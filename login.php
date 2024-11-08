@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['role'] = $user['role'];
 
         if ($user['role'] == 'admin') {
-            header("Location: dashboard.php");
+            header("Location: dashboard2.php");
         } else {
             $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
             header("Location: $redirect");

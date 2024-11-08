@@ -172,7 +172,7 @@
 
         </li>
         <li>
-          <a href="guru.php">
+          <a href="daftar_wisata.php">
             <i class="fa fa-user"></i> <span>Daftar Wisata</span>
           </a>
 
