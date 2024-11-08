@@ -139,7 +139,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" class="btn btn-login">Login</button>
                         </form>
                         <div class="link-group">
+<<<<<<< HEAD
                             <a href="index.php" class="back-link">Back</a>
+=======
+                            <a href="index.html" class="back-link">Back</a>
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
                             <a href="register.php" class="register-link">Register</a>
                         </div>
                     </div>

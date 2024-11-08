@@ -212,30 +212,48 @@ function destinasiJabar(){
 			title : 'Pantai Papuma',
 			city : 'Wuluhan',
 			image : 'img/kawah-putih.jpg',
+<<<<<<< HEAD
 			description: 'Pantai Papuma merupakan pantai yang indah. Kawasan pantai ini memiliki daratan yang menjorok ke laut membuat area pantai memiliki panorama yang indah untuk dinikmati. Salah satu keindahan pantai adalah adanya kawasan yang banyak karang. Ada tujuh karang besar yang memiliki nama sendiri.Pantai Papuma Daya Tarik Pantai Papuma Pantai Papuma merupakan pantai yang indah. Kawasan pantai ini memiliki daratan yang menjorok ke laut membuat area pantai memiliki panorama yang indah untuk dinikmati.Salah satu keindahan pantai adalah adanya kawasan yang banyak karang. Ada tujuh karang besar yang memiliki nama sendiri.',
+=======
+			description : 'Kawah Putih adalah tempat wisata di Bandung yang paling terkenal. Berlokasi di Ciwidey, Jawa Barat, kurang lebih sekitar 50 KM arah selatan kota Bandung, Kawah Putih adalah sebuah danau yang terbentuk akibat dari letusan Gunung Patuha. Sesuai dengan namanya, tanah yang ada di kawasan ini berwarna putih akibat dari pencampuran unsur belerang. Selain tanahnya yang berwarna putih, air danau kawasan Kawah Putih juga mempunyai warna yang putih kehijauan dan dapat berubah warna sesuai dengan kadar belerang yang terkandung, suhu, dan cuaca. Kawah Putih Ciwidey berada di kawasan pegunungan yang mempunyai ketinggian lebih dari 2.400 meter di atas permukaan laut. Dengan ketinggian tersebut, suhu udara di kawasan Kawah Putih tentu saja dingin dengan suhu 8 derajat Celsius sampai dengan 22 derajat Celsius, oleh karena itu jangan lupa membawa jaket atau memakai pakaian yang tebal. Selain untuk dinikmati keindahannya oleh para wisatawan, Kawah Putih Ciwidey juga sering kali menjadi tempat kegiatan lain, misalnya pengambilan gambar film, melukis, foto pengantin, sampai dengan kegiatan mendaki dan berkuda',
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 			open_gate : 'Tempat wisata ini buka setiap hari dari jam 7 pagi sampai dengan jam 5 sore.',
 			ticket : 'Harga tiket masuk Kawah Putih pada hari biasa dan hari libur serta akhir pekan adalah sama yaitu 15.000 Rupiah per orang.'
 		},
 		{
 			id : 'jbr02',
+<<<<<<< HEAD
 			title : 'Jember Mini Zoo',
 			city : 'Mangli',
 			image : 'img/minizoo.jpg',
 			description : 'Jember Mini Zoo memiliki banyak daya tarik sehingga banyak pengunjung yang datang ke sini. Jember Mini Zoo meskipun kecil, akan tetapi tempat ini memiliki banyak jenis hewan yang kecil. Kebun binatang ini mempunyai 300 ekor satwa. Para pihak pengelola juga memperhatikan kesehatan para hewan yang ada di sana dengan seksama.',
+=======
+			title : 'Stone Garden',
+			city : 'Padalarang',
+			image : 'img/stone.jpg',
+			description : 'Tidak banyak orang mengetahui keindahan yang disuguhkan oleh pemandangan di atas bukit Stone Garden ini. Apalagi bila wisatawan berkunjung di padang bertabur bebatuan ini pada pagi hari saat matahari muncul atau di senja hari saat matahari tenggelam. Pemandangan yang disuguhkan di tempat wisata di Bandung yang satu ini tampak fenomenal mengundang decak kekaguman pengunjung, setelah menjelajah bebatuan yang terbentuk secara alamiah bekas danau di zaman purba. Tentu tidak disangkal bila dikatakan Taman Batu yang terletak di dataran tinggi di atas bukit ini tidak kalah indahnya dari tempat wisata yang ada di luar negeri. Setelah sedikit treking melewati bebatuan yang menanjak, Anda bisa menapak dan melihat padang rumput tempat bebatuan yang tegak dengan formasi yang begitu artistik. Keindahan pemandangan yang terhampar luas di antara tanah pertanian penduduk serta langit lepas sejauh mata memandang ini tidak kalah bila dibandingkan dengan Grand Canyon di Amerika yang viral itu.',
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 			open_gate : 'Untuk berkunjung ke kawasan wisata ini dapat memilih hari apapun. Karena objek wisata ini buka setiap hari. Buka mulai pukul 8 pagi hingga 5 sore.',
 			ticket : 'Tiket untuk memasuki kawasan wisata ini sangat murah. Harga tiket bisa didapat dengan membayar hanya Rp5.000 saja. Selain itu jika pengunjung ingin berkemah dikenakan tarif khusus. Besarannya disesuaikan dengan lama waktu yang dihabiskan selama berkemah'
 		},
 		{
 			id : 'jbr03',
+<<<<<<< HEAD
 			title : 'Puncak Rembangan',
 			city : 'Rembangan',
 			image : 'img/rmbngn.jpeg',
+=======
+			title : 'Green Canyon',
+			city : 'Pangandaran',
+			image : 'img/green-canyon.jpg',
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 			description : 'Wisata di Jawa Barat identik dengan mall, adventure park, dan pusat perbelanjaan. Siapa sangka kalau ternyata Jawa Barat juga memiliki wisata alam yang menakjubkan yaitu Green Canyon. Green Canyon atau lebih dikenal sebagai Cukang Taneuh oleh warga sekitar, berlokasi di Desa Kertayasa, Kecamatan Cijulang, Kabupaten Ciamis. Kurang lebih 31 km dari Kota Pangandaran. Asal muasal nama Green Canyon sendiri adalah dari seorang turis Perancis yang datang pada tahun 1993. Hal ini dikarenakan airnya yang jernih kehijauan dari sungai dan lumut hijau berlimpah di sisi tebing yang membuatnya populer dengan nama Green Canyon. Bagi penduduk lokal, Cukang Taneuh memiliki makna jembatan tanah. Hal ini karena di atas lembah dan jurang dari Green Canyon terdapat sebuah jembatan dari tanah yang digunakan oleh para petani setempat untuk menuju kebun mereka.',
 			open_gate : 'Jam operasional tempat wisata ini berlangsung mulai pukul 07.00 sampai dengan 17.00 WIB. Khusus di hari Jumat, Green Canyon baru dibuka pukul 13.00, setelah shalat Jumat.',
 			ticket : 'Harga tiket masuk ke Green Canyon mulai dari 150.000 – 250.000 Rupiah tergantung dari paket wisata yang Anda ambil.'
 		},
 		{
 			id : 'jbr04',
+<<<<<<< HEAD
 			title : 'Kebun Teh Gn Gambir',
 			city : 'Bogor',
 			image : 'img/gambir.jpeg',
@@ -291,6 +309,37 @@ $(document).ready(function(){
     destinasiJabar();
 });
 
+=======
+			title : 'Gunung Pancar',
+			city : 'Bogor',
+			image : 'img/pancar.jpg',
+			description : 'Gunung Pancar adalah salah satu destinasi yang memenuhi kriteria tersebut dengan sempurna. Kawasan ini menyuguhkan panorama hutan pinus dan nuansa damai khas pegunungan. Selain itu, tempat wisata di Sentul ini juga menawarkan wahana lain yang tidak kalah menarik. Pertama, ada zona camping di tengah hutan pinus. Anda dapat menginap di area ini dengan mendirikan tenda. Kalau enggan membawa perlengkapan sendiri, zona glamping bisa menjadi solusi. Di zona glamping sudah disediakan tenda lengkap dengan tempat tidur, dapur, serta kamar mandi. Namun, Anda harus menyiapkan bujet lebih banyak untuk menikmati akomodasi di wahana ini. Selain kedua wahana tersebut, ada pula zona Fun Games dan Corporate Team Building. Kegiatannya dilakukan selama satu hari penuh dengan berbagai permainan. Anda bisa mengikuti aktivitas ini bersama teman-teman, tim, komunitas, atau karyawan perusahaan. Khusus untuk anak-anak sekolah, disediakan paket School Program. Mengusung tema kerja sama, tanggung jawab, dan kepedulian terhadap alam, mereka harus melakukan beberapa aktivitas mulai dari trekking, character building games, hingga pentas seni.',
+			open_gate : 'Kawasan wisata hutan pinus Gunung Pancar ini buka setiap hari selama 24 Jam',
+			ticket : 'Untuk bisa menikmati keindahan hijau kawasan hutan pinus ini pengunjung akan dikenakan biaya tiket yang sangat murah. Cukup mengeluarkan beberapa ribu sudah bisa berkeliling kawasan wisata ini. THarga tiket masuk ke Green Canyon mulai dari 5.000 – 10.000 Rupiah tergantung usia.'
+		},
+	]
+
+	$.each(data, function(i, loc){
+		$('#location').append(`
+			<div class="col-md-6 col-sm-12">
+    <div class="card">
+      <a href="#">
+          <img src="`+loc.image+`" class="card-img-top" alt="">
+      </a>
+      <div class="card-body">
+        <a href="">
+            <h5 class="card-title">`+loc.title+` - `+loc.city+`</h5>
+        </a>
+            <p class="card-text" style="color: #333333;">`+loc.description.slice(0,200)+`...</p>
+        <a href="detail-jabar.html" class="btn btn-primary">Baca lebih lanjut...</a>
+      </div>
+    </div>
+  </div>
+		`)
+	})
+}
+
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 function destinasiJateng(){
 	let data = [
 		{

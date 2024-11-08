@@ -349,7 +349,11 @@ session_start();
             </div>
         </section>
 
+<<<<<<< HEAD
         <section class="covid-data">
+=======
+        <!-- <section class="covid-data">
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
             <div class="container">
                 <div class="section-title">
                     <h2>Data Tentang Jeli</h2>
@@ -373,7 +377,11 @@ session_start();
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </section>
+=======
+        </section> -->
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 
         <section class="popular-destinations" id="destinasi">
             <div class="container">
@@ -392,7 +400,11 @@ session_start();
                     <div class="destination-card">
                         <img src="img/Wisata-Rembangan.jpg" alt="Wisata Rembangan">
                         <div class="destination-info">
+<<<<<<< HEAD
                             <h3>Puncak Rembangan - Rembangan</h3>
+=======
+                            <h3>Wisata Rembangan - Rembangan</h3>
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
                             <p>Wisata Alam Rembangan terletak 12 km arah utara kota Jember. Fasilitas yang dimiliki antara lain kolam Pemandian, Hotel, ruang pertemuan, restoran, arena bermain, agro wisata Kopi Kebun Rayap.</p>
                             <a href="#" class="btn">Baca lebih lanjut</a>
                         </div>
@@ -422,7 +434,11 @@ session_start();
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
+<<<<<<< HEAD
                         <a href="https://www.instagram.com/lutdaahm_"><i class="fab fa-instagram"></i></a>
+=======
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>

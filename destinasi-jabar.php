@@ -241,6 +241,7 @@ session_start();
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+<<<<<<< HEAD
         .search-container {
         margin-bottom: 2rem;
     }
@@ -257,6 +258,8 @@ session_start();
         border-color: #3498db;
         box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
     }
+=======
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 
         /* Animations */
         @keyframes fadeInUp {
@@ -321,9 +324,12 @@ session_start();
 		<div class="row mb-4 pt-4">
 			<div class="col-12">
 			<h1 class="text-center" style="color: #000000;">Destinasi</h1>
+<<<<<<< HEAD
             <div class="search-container text-center mt-4">
                 <input type="text" id="searchInput" class="form-control w-50 mx-auto" placeholder="Cari destinasi wisata...">
             </div>
+=======
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
 			</div>
 		</div>
 	</div>

@@ -18,7 +18,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
   <title>Si Jeli</title>
+=======
+  <title>Blank Page</title>
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -120,7 +124,11 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div> -->
                 <div class="pull-right">
+<<<<<<< HEAD
                   <a href="proses.php?aksi=logout" class="btn btn-default btn-flat">Sign out</a>
+=======
+                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
                 </div>
               </li>
             </ul>
@@ -172,8 +180,13 @@
 
         </li>
         <li>
+<<<<<<< HEAD
           <a href="daftar_wisata.php">
             <i class="fa fa-user"></i> <span>Daftar Wisata</span>
+=======
+          <a href="guru.php">
+            <i class="fa fa-user"></i> <span>Guru</span>
+>>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
           </a>
 
         </li>
