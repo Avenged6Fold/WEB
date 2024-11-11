@@ -333,34 +333,34 @@ button:hover {
 
         <!-- Step 2: Pilih Wisata -->
         <div class="step" id="step2">
-    <h2>Langkah 2: Pilih Wisata</h2>
+        <h2>Langkah 2: Pilih Wisata</h2>
 
-    <!-- Dropdown untuk memilih wisata -->
-    <div class="form-group">
-        <label for="pilih-wisata">Pilih Wisata:</label>
-        <select id="pilih-wisata" onchange="showTicketInput()">
-            <option value="">-- Pilih Wisata --</option>
-            <option value="kuta">Pantai Kuta - Rp 50.000/orang</option>
-            <option value="tanahlot">Tanah Lot - Rp 75.000/orang</option>
-            <option value="ubud">Ubud Monkey Forest - Rp 60.000/orang</option>
-        </select>
+        <!-- Dropdown untuk memilih wisata -->
+        <div class="form-group">
+            <label for="pilih-wisata">Pilih Wisata:</label>
+            <select id="pilih-wisata" onchange="showTicketInput()">
+                <option value="">-- Pilih Wisata --</option>
+                <option value="kuta">Pantai Kuta - Rp 50.000/orang</option>
+                <option value="tanahlot">Tanah Lot - Rp 75.000/orang</option>
+                <option value="ubud">Ubud Monkey Forest - Rp 60.000/orang</option>
+            </select>
+        </div>
+
+        <!-- Dropdown jumlah tiket, muncul setelah wisata dipilih -->
+        <div class="form-group" id="jumlah-tiket-group" style="display: none;">
+            <label for="jumlah-tiket">Jumlah Tiket:</label>
+            <input type="number" id="jumlah-tiket" min="0" value="0" onchange="showDateInput()">
+        </div>
+
+        <!-- Input tanggal kunjungan, muncul setelah jumlah tiket dipilih -->
+        <div class="form-group" id="tanggal-kunjungan-group" style="display: none;">
+            <label for="tanggal-kunjungan">Tanggal Kunjungan:</label>
+            <input type="date" id="tanggal-kunjungan" required>
+        </div>
+
+        <button onclick="prevStep()">Kembali</button>
+        <button onclick="showSummary()">Pesan Tiket</button>
     </div>
-
-    <!-- Dropdown jumlah tiket, muncul setelah wisata dipilih -->
-    <div class="form-group" id="jumlah-tiket-group" style="display: none;">
-        <label for="jumlah-tiket">Jumlah Tiket:</label>
-        <input type="number" id="jumlah-tiket" min="0" value="0" onchange="showDateInput()">
-    </div>
-
-    <!-- Input tanggal kunjungan, muncul setelah jumlah tiket dipilih -->
-    <div class="form-group" id="tanggal-kunjungan-group" style="display: none;">
-        <label for="tanggal-kunjungan">Tanggal Kunjungan:</label>
-        <input type="date" id="tanggal-kunjungan" required>
-    </div>
-
-    <button onclick="prevStep()">Kembali</button>
-    <button onclick="showSummary()">Pesan Tiket</button>
-</div>
 
 <script>
     // Menampilkan dropdown jumlah tiket setelah wisata dipilih
@@ -398,55 +398,41 @@ button:hover {
             <div class="summary" id="ringkasan">
             </div>
             <button onclick="prevStep()">Kembali</button>
-            
+            <form action="pesan.php" method="POST">
+                <input type="hidden" name="nama" id="form-nama">
+                <input type="hidden" name="email" id="form-email">
+                <input type="hidden" name="telepon" id="form-telepon">
+                <input type="hidden" name="alamat" id="form-alamat">
+                <input type="hidden" name="destinasi" id="form-destinasi">
+                <input type="hidden" name="jumlah_tiket" id="form-jumlah_tiket">
+                <input type="hidden" name="tanggal_kunjungan" id="form-tanggal_kunjungan">
+                <input type="hidden" name="total_bayar" id="form-total_bayar">
+                <br>
                 
-                <button onclick="nextToConfirmation()">Konfirmasi Pemesanan</button>
-
+                <button type="submit" onclick="Checkout()">Lanjutkan Pembayaran</button>
             </form>
         </div>
 
-        <!-- Step 4: Konfirmasi -->
-       <!-- Step 4: Konfirmasi dan Pembayaran -->
-<!-- Step 4: Konfirmasi dan Pembayaran -->
-<div class="step" id="step4" style="display: none;">
-    <h2>Langkah 4: Konfirmasi Pemesanan</h2>
-    <p>Terima kasih! Pemesanan Anda telah dikonfirmasi.</p>
-    <p>Kami akan mengirimkan detail pemesanan ke email Anda.</p>
-
-    <h3>Metode Pembayaran: BCA-VA</h3>
-    <p>Silakan lakukan pembayaran melalui BCA-VA menggunakan nomor Virtual Account berikut:</p>
-    <p><strong>Nomor BCA-VA:</strong> <span id="briva-number">126XXXXXXXXXX</span></p>
-    <p><strong>Total yang harus dibayar:</strong> Rp <span id="briva-total"></span></p>
-
-    <!-- Countdown Timer -->
-    <h3>Waktu Tersisa untuk Pembayaran:</h3>
-    <p id="countdown">24:00:00</p> <!-- Initial countdown display -->
-
-    <p>Instruksi Pembayaran:</p>
-    <ul>
-        <li>Buka aplikasi perbankan atau ATM terdekat.</li>
-        <li>Pilih menu Pembayaran > Virtual Account.</li>
-        <li>Masukkan nomor BCA-VA di atas.</li>
-        <li>Konfirmasi pembayaran Anda.</li>
-    </ul>
-    
-    <form action="pesan.php" method="POST">
-        <input type="hidden" name="nama" id="form-nama">
-        <input type="hidden" name="email" id="form-email">
-        <input type="hidden" name="telepon" id="form-telepon">
-        <input type="hidden" name="alamat" id="form-alamat">
-        <input type="hidden" name="destinasi" id="form-destinasi">
-        <input type="hidden" name="jumlah_tiket" id="form-jumlah_tiket">
-        <input type="hidden" name="tanggal_kunjungan" id="form-tanggal_kunjungan">
-        <input type="hidden" name="total_bayar" id="form-total_bayar">
-    </form>
-
-    <button onclick="backToHome()">Kembali ke Halaman Utama</button>
-</div>
-
-
-
-
+        <!-- Step 4: Pembayaran -->
+        <div class="step" id="step4">
+            <h2>Langkah 4: Pembayaran Pemesanan</h2>
+            <div class="summary" id="bayar">
+            </div>
+            <button onclick="prevStep()">Kembali</button>
+            <form action="pesan.php" method="POST">
+                <input type="hidden" name="nama" id="form-nama">
+                <input type="hidden" name="email" id="form-email">
+                <input type="hidden" name="telepon" id="form-telepon">
+                <input type="hidden" name="alamat" id="form-alamat">
+                <input type="hidden" name="destinasi" id="form-destinasi">
+                <input type="hidden" name="jumlah_tiket" id="form-jumlah_tiket">
+                <input type="hidden" name="tanggal_kunjungan" id="form-tanggal_kunjungan">
+                <input type="hidden" name="total_bayar" id="form-total_bayar">
+                <br>
+                
+                <button type="submit" onclick="prepareFormData()">Konfirmasi Pembayaran</button>
+            </form>
+        </div>
         
 
     </div>
@@ -480,10 +466,17 @@ button:hover {
         }
 
         function prevStep() {
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            currentStep--;
-            document.getElementById(`step${currentStep}`).classList.add('active');
-        }
+    if (currentStep === 1) {
+        // Redirect to pesan.php if on the first step
+        window.location.href = 'pesan.php';
+    } else {
+        // Go to the previous step
+        document.getElementById(`step${currentStep}`).classList.remove('active');
+        currentStep--;
+        document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+}
+
 
         function validateStep1() {
             const nama = document.getElementById('nama').value;
@@ -526,163 +519,51 @@ button:hover {
             };
         }
         function showSummary() {
-    const wisata = document.getElementById("pilih-wisata").options[document.getElementById("pilih-wisata").selectedIndex].text;
-    const jumlahTiket = document.getElementById("jumlah-tiket").value;
-    const tanggalKunjungan = document.getElementById("tanggal-kunjungan").value;
+        const wisata = document.getElementById("pilih-wisata").options[document.getElementById("pilih-wisata").selectedIndex].text;
+        const jumlahTiket = document.getElementById("jumlah-tiket").value;
+        const tanggalKunjungan = document.getElementById("tanggal-kunjungan").value;
 
-    if (!wisata || jumlahTiket <= 0 || !tanggalKunjungan) {
-        alert("Lengkapi semua pilihan sebelum melanjutkan.");
-        return;
-    }
-
-    let hargaPerOrang;
-    switch (document.getElementById("pilih-wisata").value) {
-        case "kuta":
-            hargaPerOrang = 50000;
-            break;
-        case "tanahlot":
-            hargaPerOrang = 75000;
-            break;
-        case "ubud":
-            hargaPerOrang = 60000;
-            break;
-        default:
-            hargaPerOrang = 0;
-            break;
-    }
-    const totalBayar = hargaPerOrang * jumlahTiket;
-
-    document.getElementById("ringkasan").innerHTML = `
-        <p><strong>Destinasi:</strong> ${wisata}</p>
-        <p><strong>Jumlah Tiket:</strong> ${jumlahTiket}</p>
-        <p><strong>Tanggal Kunjungan:</strong> ${tanggalKunjungan}</p>
-        <p><strong>Total Bayar:</strong> Rp ${totalBayar.toLocaleString()}</p>
-    `;
-
-    document.getElementById("step2").style.display = "none";
-    document.getElementById("step3").style.display = "block";
-
-    document.getElementById("form-destinasi").value = wisata;
-    document.getElementById("form-jumlah_tiket").value = jumlahTiket;
-    document.getElementById("form-tanggal_kunjungan").value = tanggalKunjungan;
-    document.getElementById("form-total_bayar").value = totalBayar;
-}
-
-function nextToConfirmation() {
-    document.getElementById("step3").style.display = "none";
-    document.getElementById("step4").style.display = "block";
-
-    const telepon = document.getElementById("telepon").value;
-    const brivaNumber = "126" + telepon;
-
-    const totalBayar = document.getElementById("form-total_bayar").value;
-
-    document.getElementById("briva-number").textContent = brivaNumber;
-    document.getElementById("briva-total").textContent = parseInt(totalBayar).toLocaleString();
-
-    startCountdown(24 * 60 * 60); // 24 hours in seconds
-}
-
-function startCountdown(duration) {
-    let timer = duration;
-    const countdownElement = document.getElementById("countdown");
-
-    const interval = setInterval(() => {
-        const hours = Math.floor(timer / 3600);
-        const minutes = Math.floor((timer % 3600) / 60);
-        const seconds = timer % 60;
-
-        countdownElement.textContent = 
-            `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-        if (--timer < 0) {
-            clearInterval(interval);
-            countdownElement.textContent = "Waktu pembayaran telah habis.";
-            alert("Waktu untuk pembayaran telah habis. Silakan melakukan pemesanan ulang.");
-            backToHome(); // Redirect to home or any other action
+        if (!wisata || jumlahTiket <= 0 || !tanggalKunjungan) {
+            alert("Lengkapi semua pilihan sebelum melanjutkan.");
+            return;
         }
-    }, 1000);
-}
 
-function backToHome() {
-    // Tindakan untuk kembali ke halaman utama atau awal
-    window.location.href = "pesan.php";  // Ganti dengan URL halaman utama Anda
-}
+        // Hitung total bayar berdasarkan pilihan destinasi dan jumlah tiket
+        let hargaPerOrang;
+        switch (document.getElementById("pilih-wisata").value) {
+            case "kuta":
+                hargaPerOrang = 50000;
+                break;
+            case "tanahlot":
+                hargaPerOrang = 75000;
+                break;
+            case "ubud":
+                hargaPerOrang = 60000;
+                break;
+            default:
+                hargaPerOrang = 0;
+                break;
+        }
+        const totalBayar = hargaPerOrang * jumlahTiket;
 
+        // Tampilkan ringkasan
+        document.getElementById("ringkasan").innerHTML = `
+            <p><strong>Destinasi:</strong> ${wisata}</p>
+            <p><strong>Jumlah Tiket:</strong> ${jumlahTiket}</p>
+            <p><strong>Tanggal Kunjungan:</strong> ${tanggalKunjungan}</p>
+            <p><strong>Total Bayar:</strong> Rp ${totalBayar.toLocaleString()}</p>
+        `;
+
+        // Sembunyikan step2 dan tampilkan step3
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "block";
 
         // Isi elemen tersembunyi untuk form
         document.getElementById("form-destinasi").value = wisata;
         document.getElementById("form-jumlah_tiket").value = jumlahTiket;
         document.getElementById("form-tanggal_kunjungan").value = tanggalKunjungan;
         document.getElementById("form-total_bayar").value = totalBayar;
-    
-        // function formatDate(dateString) {
-        //     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        //     return new Date(dateString).toLocaleDateString('id-ID', options);
-        // }
-
-        // function showSummary() {
-        //     if (!validateDates()) return;
-
-        //     const nama = document.getElementById('nama').value;
-        //     const email = document.getElementById('email').value;
-        //     const totals = calculateTotal();
-            
-        //     const kutaTickets = parseInt(document.getElementById('jumlah-kuta').value) || 0;
-        //     const tanahlotTickets = parseInt(document.getElementById('jumlah-tanahlot').value) || 0;
-        //     const ubudTickets = parseInt(document.getElementById('jumlah-ubud').value) || 0;
-
-        //     if (kutaTickets + tanahlotTickets + ubudTickets === 0) {
-        //         alert('Mohon pilih minimal 1 tiket wisata!');
-        //         return;
-        //     }
-
-        //     let summaryHTML = `
-        //         <h3>Data Pemesan:</h3>
-        //         <p>Nama: ${nama}</p>
-        //         <p>Email: ${email}</p>
-        //         <h3>Detail Pemesanan:</h3>
-        //     `;
-
-        //     if (kutaTickets > 0) {
-        //         const tanggalKuta = document.getElementById('tanggal-kuta').value;
-        //         summaryHTML += `
-        //             <p>Pantai Kuta:</p>
-        //             <ul>
-        //                 <li>Jumlah Tiket: ${kutaTickets} (Rp ${totals.kuta.toLocaleString()})</li>
-        //                 <li>Tanggal Kunjungan: ${formatDate(tanggalKuta)}</li>
-        //             </ul>
-        //         `;
-        //     }
-        //     if (tanahlotTickets > 0) {
-        //         const tanggalTanahlot = document.getElementById('tanggal-tanahlot').value;
-        //         summaryHTML += `
-        //             <p>Tanah Lot:</p>
-        //             <ul>
-        //                 <li>Jumlah Tiket: ${tanahlotTickets} (Rp ${totals.tanahlot.toLocaleString()})</li>
-        //                 <li>Tanggal Kunjungan: ${formatDate(tanggalTanahlot)}</li>
-        //             </ul>
-        //         `;
-        //     }
-        //     if (ubudTickets > 0) {
-        //         const tanggalUbud = document.getElementById('tanggal-ubud').value;
-        //         summaryHTML += `
-        //             <p>Ubud Monkey Forest:</p>
-        //             <ul>
-        //                 <li>Jumlah Tiket: ${ubudTickets} (Rp ${totals.ubud.toLocaleString()})</li>
-        //                 <li>Tanggal Kunjungan: ${formatDate(tanggalUbud)}</li>
-        //             </ul>
-        //         `;
-        //     }
-
-        //     summaryHTML += `<h3>Total Pembayaran: Rp ${totals.total.toLocaleString()}</h3>`;
-
-        //     document.getElementById('ringkasan').innerHTML = summaryHTML;
-            
-        //     document.getElementById(`step${currentStep}`).classList.remove('active');
-        //     currentStep++;
-        //     document.getElementById(`step${currentStep}`).classList.add('active');
-        // }
+    }
 
         function prepareFormData() {
     // Ambil nilai dari elemen HTML dan assign ke form input yang baru
