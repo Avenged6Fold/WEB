@@ -4,11 +4,12 @@ session_start();
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Liburin Aja - Modern</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Liburin Aja</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+  <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
         :root {
@@ -309,9 +310,10 @@ session_start();
             }
         }
     </style>
-</head>
+
+	<script src="https://use.fontawesome.com/89b8dcd205.js"></script>
 <body>
-    <header>
+	<header>
         <nav class="container">
             <div class="logo">Jeli</div>
             <ul class="nav-links">
@@ -319,166 +321,134 @@ session_start();
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
-                    <li><a href="contact_us.php">Contact</a></li>
+                    <li><a href="contact_us.html">Contact</a></li>
                     <div class="logout-link">
                         <li><a href="logout.php">Logout</a></li>
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
-                    <li><a href="contact_us.php">Contact</a></li>
+                    <li><a href="contact_us.html">Contact</a></li>
                 <?php endif; ?>
             </ul>
 
 
         </nav>
     </header>
-
-    <main>
-        <section class="hero">
-            <!-- Video Background -->
-            <video autoplay muted loop>
-                <source src="tes.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <div class="hero-content">
-                <h1>Jelajahi Keindahan Indonesia</h1>
-                <p>Platform Tiket Wisata Di Jember Yang Mana Juga Menyediakan Tips Liburan dan Tempat Kuliner Di Jember</p>
-                <a href="#destinasi" class="btn">Mulai Menjelajah</a>
-            </div>
-        </section>
-
-        <section class="covid-data">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Data Tentang Jeli</h2>
-                </div>
-                <div class="covid-cards">
-                    <div class="covid-card">
-                        <h3>Total Pemesanan</h3>
-                        <p id="positif">0</p>
-                    </div>
-                    <div class="covid-card">
-                        <h3>Total Akun User</h3>
-                        <p id="sembuh">0</p>
-                    </div>
-                    <div class="covid-card">
-                        <h3>Total Tiket Yang Berhasil</h3>
-                        <p id="meninggal">0</p>
-                    </div>
-                    <div class="covid-card">
-                        <h3>Total Tiket Yang Dikembalikan</h3>
-                        <p id="dirawat">0</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="popular-destinations" id="destinasi">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Destinasi Populer</h2>
-                </div>
-                <div class="destinations-grid">
-                    <div class="destination-card">
-                        <img src="img/papuma.jpg" alt="Pantai Papuma">
-                        <div class="destination-info">
-                            <h3>Pantai Papuma - Wuluhan</h3>
-                            <p>Pantai Papuma adalah sebuah pantai yang menjadi tempat wisata di Kabupaten Jember, Provinsi Jawa Timur, Indonesia.</p>
-                            <a href="#" class="btn">Baca lebih lanjut</a>
-                        </div>
-                    </div>
-                    <div class="destination-card">
-                        <img src="img/Wisata-Rembangan.jpg" alt="Wisata Rembangan">
-                        <div class="destination-info">
-                            <h3>Puncak Rembangan - Rembangan</h3>
-                            <p>Wisata Alam Rembangan terletak 12 km arah utara kota Jember. Fasilitas yang dimiliki antara lain kolam Pemandian, Hotel, ruang pertemuan, restoran, arena bermain, agro wisata Kopi Kebun Rayap.</p>
-                            <a href="#" class="btn">Baca lebih lanjut</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Tentang Kami</h3>
-                    <p>Platform wisata dan komunitas dengan beragam tips liburan, dan kuliner sepulau jawa. Jangan lupa Subscribe & Like agar kamu terupdate. Jangan Lupa Liburan!</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Menu</h3>
-                    <ul>
-                        <li><a href="#">Tips</a></li>
-                        <li><a href="#">Daftar Wisata</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Ikuti Kami</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/lutdaahm_"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Liburin Aja. All Rights Reserved.</p>
-            </div>
+	<!-- contact section -->
+    <section id="contact-sections" style="padding-top: 80px;">
+  <div class="container-md">
+    <div class="section-title text-center">
+      <h2 class="header-title">Contact Us</h2>
+    </div>
+    <p class="header-text">
+      Selamat datang di Liburan Aja, web mengenai informasi wisata Jawa.
+      Jika Anda memiliki pertanyaan, kerjasama dan review. Hubungi kami
+      melalui Contact Form dibawah:
+    </p>
+    <div class="contact-form mt-2">
+      <!-- First grid -->
+      <div class="first-grid col-lg-4 col-md-12 col-sm-12">
+        <div>
+          <i class="fa fa-map-marker"></i><span class="form-info"> Prambanan, Indonesia</span><br />
+          <i class="fa fa-phone"></i><span class="form-info"> 081200010002</span><br />
+          <i class="fa fa-envelope"></i><span class="form-info"> LiburanAja@Gmail.com</span>
         </div>
-    </footer>
+      </div>
+      <!-- Second grid -->
+      <div class="second-grid col-lg-8 col-md-12 col-sm-12">
+        <form>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text"><i class="fa fa-user" aria-hidden="true"></i></span>
+            </div>
+            <input type="text" placeholder="Name" aria-label="Name">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            </div>
+            <input type="email" placeholder="Email" aria-label="Email">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text text"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+            </div>
+            <input type="text" placeholder="Subject of this message">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
+            </div>
+            <textarea class="message" placeholder="Message" rows="5" aria-label="With textarea"></textarea>
+          </div>
+          <br />
+          <button class="submit btn-send btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
 
-        // Sticky header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 0);
-        });
+	<!-- Section Footer -->
+	<div class="footer text-white">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<h2>Liburin Aja</h2>
+					<p class="p-footer">Platform wisata dan komunitas dengan beragam tips liburan, dan kuliner sepulau jawa. Jangan lupa Subscribe & Like agar kamu terupdate. Jangan Lupa Liburan!</p>
+					<div class="container">
+						<div class="row pt-4">
+							<div class="col-12">
+								<p class="content display-5">Share :</p>
+							</div>
+							<div class="col-12 social">
+								<a href="#"><i class="fab fa-facebook"></i></a>
+								<a href="#"><i class="fab fa-twitter"></i></a>
+								<a href="#"><i class="fab fa-whatsapp"></i></a>
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 15px;">
+							<h2>Menu</h2>
+							<ul>
+								<li class="footer-item">
+					                <a class="footer-link text-white" href="#">Tips</a>
+					            </li>
+					            <li class="footer-item">
+					                <a class="footer-link text-white" href="#">Kuliner</a>
+					            </li> 
+					            <li class="footer-item">
+					                <a class="footer-link text-white" href="#">Contact Us</a>
+					            </li>
+							</ul>
+						</div>
+						<div class="col-lg6 col-md-6 col-sm-12">
+							<h2>Let's Connect</h2>
+							<ul>
+								<li class="footer-socmed">
+					                <a class="footer-link text-white" href="#"><ion-icon name="logo-facebook"></ion-icon> Instagram</a>
+					            </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					<p class="text-center">
+						© 2020 <a href="" class="copyright text-white">liburinaja.com</a> - All Rights Reserved | <a href="" class="copyright text-white">Privacy Policy</a><a href="" class="copyright text-white">Contact</a> | <a href="" class="copyright text-white">Renew/Change Cookie Consent</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        // Fetch and display COVID-19 data
-        async function fetchCovidData() {
-            try {
-                const response = await fetch('https://api.kawalcorona.com/indonesia/');
-                const data = await response.json();
-                document.getElementById('positif').textContent = data[0].positif;
-                document.getElementById('sembuh').textContent = data[0].sembuh;
-                document.getElementById('meninggal').textContent = data[0].meninggal;
-                document.getElementById('dirawat').textContent = data[0].dirawat;
-            } catch (error) {
-                console.error('Error fetching COVID-19 data:', error);
-            }
-        }
-
-        // Call fetchCovidData function when the page loads
-        window.addEventListener('load', fetchCovidData);
-    </script>
-
-    <script>
-        function checkLogin() {
-            // Cek apakah pengguna sudah login
-            var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
-
-            if (loggedIn === 'false') {
-                alert("Anda harus login terlebih dahulu untuk memesan tiket!");
-                // Redirect ke halaman login dengan parameter redirect
-                window.location.href = "login.php?redirect=index.php";
-            } 
-        } 
-    </script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
