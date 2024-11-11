@@ -2,11 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.18
     </div>
-<<<<<<< HEAD
     <strong>Copyright &copy; 2024-2025 <a href="https://adminlte.io">SiJeli</a>.</strong> All rights
-=======
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
->>>>>>> 3bcafc31d15443fe2bf595253f048f84d179374c
     reserved.
   </footer>
 </div>
