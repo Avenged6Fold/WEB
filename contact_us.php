@@ -350,41 +350,42 @@ session_start();
       <!-- First grid -->
       <div class="first-grid col-lg-4 col-md-12 col-sm-12">
         <div>
-          <i class="fa fa-map-marker"></i><span class="form-info"> Prambanan, Indonesia</span><br />
-          <i class="fa fa-phone"></i><span class="form-info"> 081200010002</span><br />
-          <i class="fa fa-envelope"></i><span class="form-info"> LiburanAja@Gmail.com</span>
+          <i class="fa fa-map-marker"></i><span class="form-info"> Jember, Indonesia</span><br />
+          <i class="fa fa-phone"></i><span class="form-info"> 081237832005</span><br />
+          <i class="fa fa-envelope"></i><span class="form-info"> fhanwam@gmail.com</span>
         </div>
       </div>
       <!-- Second grid -->
       <div class="second-grid col-lg-8 col-md-12 col-sm-12">
-        <form>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text"><i class="fa fa-user" aria-hidden="true"></i></span>
-            </div>
-            <input type="text" placeholder="Name" aria-label="Name">
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-            </div>
-            <input type="email" placeholder="Email" aria-label="Email">
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text text"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            </div>
-            <input type="text" placeholder="Subject of this message">
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
-            </div>
-            <textarea class="message" placeholder="Message" rows="5" aria-label="With textarea"></textarea>
-          </div>
-          <br />
-          <button class="submit btn-send btn btn-primary">Send</button>
-        </form>
+      <form action="send_email.php" method="POST">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text text"><i class="fa fa-user" aria-hidden="true"></i></span>
+        </div>
+        <input type="text" name="name" placeholder="Name" aria-label="Name" required>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+        </div>
+        <input type="email" name="email" placeholder="Email" aria-label="Email" required>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text text"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+        </div>
+        <input type="text" name="subject" placeholder="Subject of this message" required>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
+        </div>
+        <textarea class="message" name="message" placeholder="Message" rows="5" aria-label="With textarea" required></textarea>
+    </div>
+    <br />
+    <button type="submit" class="submit btn-send btn btn-primary">Send</button>
+</form>
+
       </div>
     </div>
   </div>

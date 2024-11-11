@@ -2,10 +2,12 @@
 include 'db.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $role = 'pembeli';
+    $role = 'admin';
     
+    // Cek apakah email sudah ada
     $check_stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
     $check_stmt->bind_param("s", $email);
     $check_stmt->execute();
@@ -14,8 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         echo "Email sudah terdaftar!";
     } else {
-        $stmt = $conn->prepare("INSERT INTO users (email, password, role) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $email, $password, $role);
+        // Insert dengan kolom username
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $username, $email, $password, $role);
         
         if ($stmt->execute()) {
             header("Location: login.php");
@@ -29,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,7 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -119,6 +120,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="col-md-6 form-section">
                         <h3 class="text-center">Register</h3>
                         <form action="" method="post">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
@@ -138,5 +143,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

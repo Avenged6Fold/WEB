@@ -7,29 +7,28 @@ if(isset($_GET['aksi'])) {
     switch($aksi) {
         case 'add':
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // Validasi input
-                if(empty($_POST['email']) || empty($_POST['password'])) {
-                    die("Email dan password harus diisi!");
+                if(empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
+                    die("Username, email, dan password harus diisi!");
                 }
 
+                $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
                 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     die("Format email tidak valid!");
                 }
 
-                // Cek apakah email sudah ada
-                $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
-                $stmt->execute([$email]);
+                $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ? OR username = ?");
+                $stmt->execute([$email, $username]);
                 if($stmt->fetchColumn() > 0) {
-                    die("Email sudah terdaftar!");
+                    die("Email atau username sudah terdaftar!");
                 }
 
                 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $role = $_POST['role'];
                 
                 try {
-                    $stmt = $pdo->prepare("INSERT INTO users (email, password, role) VALUES (?, ?, ?)");
-                    $stmt->execute([$email, $password, $role]);
+                    $stmt = $pdo->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([$username, $email, $password, $role]);
                     header('Location: dashboard2.php?status=success&message=Data berhasil ditambahkan');
                     exit;
                 } catch(PDOException $e) {
@@ -44,7 +43,7 @@ if(isset($_GET['aksi'])) {
                 $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
                 
                 try {
-                    $stmt = $pdo->prepare("SELECT id, email, role FROM users WHERE id = ?");
+                    $stmt = $pdo->prepare("SELECT id, username, email, role FROM users WHERE id = ?");
                     $stmt->execute([$id]);
                     $data = $stmt->fetch(PDO::FETCH_ASSOC);
                     
@@ -63,6 +62,7 @@ if(isset($_GET['aksi'])) {
         case 'update':
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+                $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
                 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
                 $role = $_POST['role'];
 
@@ -73,14 +73,12 @@ if(isset($_GET['aksi'])) {
 
                 try {
                     if (!empty($_POST['password'])) {
-                        // Update dengan password baru
                         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                        $stmt = $pdo->prepare("UPDATE users SET email = ?, password = ?, role = ? WHERE id = ?");
-                        $stmt->execute([$email, $password, $role, $id]);
+                        $stmt = $pdo->prepare("UPDATE users SET username = ?, email = ?, password = ?, role = ? WHERE id = ?");
+                        $stmt->execute([$username, $email, $password, $role, $id]);
                     } else {
-                        // Update tanpa password
-                        $stmt = $pdo->prepare("UPDATE users SET email = ?, role = ? WHERE id = ?");
-                        $stmt->execute([$email, $role, $id]);
+                        $stmt = $pdo->prepare("UPDATE users SET username = ?, email = ?, role = ? WHERE id = ?");
+                        $stmt->execute([$username, $email, $role, $id]);
                     }
                     echo json_encode(['success' => 'Data berhasil diupdate']);
                 } catch(PDOException $e) {

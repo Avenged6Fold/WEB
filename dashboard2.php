@@ -59,39 +59,44 @@ include 'db.php';
             <span class="btn btn-success" data-toggle="modal" data-target="#myModal">Tambah Admin</span>
           </div>
         </div>
-        <div id="modal-edit" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form id="form_edit">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Form Edit User Admin</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" class="form-control" name="id" id="edit_id">
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="edit_email" placeholder="Email" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password" id="edit_password" placeholder="Password">
-                    <small class="text-muted">Biarkan kosong jika tidak ingin mengubah password</small>
-                  </div>
-                  <div class="form-group">
-                    <label for="role">Role</label>
-                    <select class="form-control" name="role" id="edit_role" required>
-                      <option value="admin">Admin</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <input type="button" value="Update" name="update" class="btn btn-success" onclick="update_data()" />
-                </div>
-              </form>
+        <!-- Edit Admin Modal -->
+    <div id="modal-edit" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="form_edit">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Form Edit User Admin</h4>
             </div>
-          </div>
+            <div class="modal-body">
+              <input type="hidden" class="form-control" name="id" id="edit_id">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="edit_username" placeholder="Username" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="edit_email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="edit_password" placeholder="Password">
+                <small class="text-muted">Biarkan kosong jika tidak ingin mengubah password</small>
+              </div>
+              <div class="form-group">
+                <label for="role">Role</label>
+                <select class="form-control" name="role" id="edit_role" required>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="button" value="Update" name="update" class="btn btn-success" onclick="update_data()" />
+            </div>
+          </form>
         </div>
+      </div>
+    </div>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -106,6 +111,10 @@ include 'db.php';
                   <div class="col-lg-6">
                     <div class="form-group">
                       <div class="box-body">
+                      <div class="form-group">
+                          <label for="username">Username</label>
+                          <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                      </div>
                         <div class="form-group">
                           <label for="email">Email</label>
                           <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
@@ -138,6 +147,7 @@ include 'db.php';
             <thead>
               <tr>
                 <th>No</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Created At</th>
@@ -152,6 +162,7 @@ include 'db.php';
                   $id++;
                   echo "<tr>";
                   echo "<td>".$id."</td>";
+                  echo "<td>".$user['username']."</td>";
                   echo "<td>".$user['email']."</td>";
                   echo "<td>".$user['role']."</td>";
                   echo "<td>".date('d M Y H:i', strtotime($user['created_at']))."</td>";
@@ -181,6 +192,7 @@ include 'db.php';
         success : function(result){
           $("#modal-edit").modal('show');
           $("#edit_id").val(result.id);
+          $("#edit_username").val(result.username);
           $("#edit_email").val(result.email);
           $("#edit_role").val(result.role);
         },
