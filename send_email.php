@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'your-email@gmail.com'; // Ganti dengan email Anda
-        $mail->Password = 'your-email-password'; // Ganti dengan password email Anda atau App Password jika 2FA aktif
+        $mail->Username = 'fhanwam@gmail.com'; // Ganti dengan email Anda
+        $mail->Password = 'bbqa pnvt fniz phts'; // Ganti dengan password email Anda atau App Password jika 2FA aktif
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Konten Email
         $mail->isHTML(true);
         $mail->Subject = "Contact Us Form: $subject";
-        $mail->Body    = "Anda menerima pesan baru dari form kontak di website Liburan Aja.<br><br>" .
+        $mail->Body    = "Anda menerima pesan baru dari form kontak di website Si Jeli.<br><br>" .
                          "Detail Pesan:<br>" .
                          "Nama: $name<br>" .
                          "Email: $email<br>" .
