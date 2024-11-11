@@ -289,7 +289,7 @@ button:hover {
         </div>
 
         <!-- Step 2: Pilih Wisata -->
-        <div class="step" id="step2">
+        <!-- <div class="step" id="step2">
             <h2>Langkah 2: Pilih Wisata</h2>
             <div class="wisata-card">
                 <h3>Pantai Kuta</h3>
@@ -329,9 +329,70 @@ button:hover {
             </div>
             <button onclick="prevStep()">Kembali</button>
             <button onclick="showSummary()">Pesan Tiket</button>
-        </div>
+        </div> -->
 
-         <!-- Step 3: Ringkasan -->
+        <!-- Step 2: Pilih Wisata -->
+        <div class="step" id="step2">
+    <h2>Langkah 2: Pilih Wisata</h2>
+
+    <!-- Dropdown untuk memilih wisata -->
+    <div class="form-group">
+        <label for="pilih-wisata">Pilih Wisata:</label>
+        <select id="pilih-wisata" onchange="showTicketInput()">
+            <option value="">-- Pilih Wisata --</option>
+            <option value="kuta">Pantai Kuta - Rp 50.000/orang</option>
+            <option value="tanahlot">Tanah Lot - Rp 75.000/orang</option>
+            <option value="ubud">Ubud Monkey Forest - Rp 60.000/orang</option>
+        </select>
+    </div>
+
+    <!-- Dropdown jumlah tiket, muncul setelah wisata dipilih -->
+    <div class="form-group" id="jumlah-tiket-group" style="display: none;">
+        <label for="jumlah-tiket">Jumlah Tiket:</label>
+        <input type="number" id="jumlah-tiket" min="0" value="0" onchange="showDateInput()">
+    </div>
+
+    <!-- Input tanggal kunjungan, muncul setelah jumlah tiket dipilih -->
+    <div class="form-group" id="tanggal-kunjungan-group" style="display: none;">
+        <label for="tanggal-kunjungan">Tanggal Kunjungan:</label>
+        <input type="date" id="tanggal-kunjungan" required>
+    </div>
+
+    <button onclick="prevStep()">Kembali</button>
+    <button onclick="showSummary()">Pesan Tiket</button>
+</div>
+
+<script>
+    // Menampilkan dropdown jumlah tiket setelah wisata dipilih
+    function showTicketInput() {
+        const wisata = document.getElementById("pilih-wisata").value;
+        const jumlahTiketGroup = document.getElementById("jumlah-tiket-group");
+
+        // Jika ada wisata yang dipilih, tampilkan dropdown jumlah tiket
+        if (wisata) {
+            jumlahTiketGroup.style.display = "block";
+        } else {
+            jumlahTiketGroup.style.display = "none";
+            document.getElementById("tanggal-kunjungan-group").style.display = "none";
+        }
+    }
+
+    // Menampilkan input tanggal setelah jumlah tiket dipilih
+    function showDateInput() {
+        const jumlahTiket = document.getElementById("jumlah-tiket").value;
+        const tanggalKunjunganGroup = document.getElementById("tanggal-kunjungan-group");
+
+        // Jika jumlah tiket lebih dari 0, tampilkan input tanggal kunjungan
+        if (jumlahTiket > 0) {
+            tanggalKunjunganGroup.style.display = "block";
+        } else {
+            tanggalKunjunganGroup.style.display = "none";
+        }
+    }
+</script>
+
+
+        <!-- Step 3: Ringkasan -->
         <div class="step" id="step3">
             <h2>Langkah 3: Ringkasan Pemesanan</h2>
             <div class="summary" id="ringkasan">
@@ -429,74 +490,119 @@ button:hover {
                 total: (kutaTickets * 50000) + (tanahlotTickets * 75000) + (ubudTickets * 60000)
             };
         }
-
-        function formatDate(dateString) {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('id-ID', options);
-        }
-
         function showSummary() {
-            if (!validateDates()) return;
+        const wisata = document.getElementById("pilih-wisata").options[document.getElementById("pilih-wisata").selectedIndex].text;
+        const jumlahTiket = document.getElementById("jumlah-tiket").value;
+        const tanggalKunjungan = document.getElementById("tanggal-kunjungan").value;
 
-            const nama = document.getElementById('nama').value;
-            const email = document.getElementById('email').value;
-            const totals = calculateTotal();
-            
-            const kutaTickets = parseInt(document.getElementById('jumlah-kuta').value) || 0;
-            const tanahlotTickets = parseInt(document.getElementById('jumlah-tanahlot').value) || 0;
-            const ubudTickets = parseInt(document.getElementById('jumlah-ubud').value) || 0;
-
-            if (kutaTickets + tanahlotTickets + ubudTickets === 0) {
-                alert('Mohon pilih minimal 1 tiket wisata!');
-                return;
-            }
-
-            let summaryHTML = `
-                <h3>Data Pemesan:</h3>
-                <p>Nama: ${nama}</p>
-                <p>Email: ${email}</p>
-                <h3>Detail Pemesanan:</h3>
-            `;
-
-            if (kutaTickets > 0) {
-                const tanggalKuta = document.getElementById('tanggal-kuta').value;
-                summaryHTML += `
-                    <p>Pantai Kuta:</p>
-                    <ul>
-                        <li>Jumlah Tiket: ${kutaTickets} (Rp ${totals.kuta.toLocaleString()})</li>
-                        <li>Tanggal Kunjungan: ${formatDate(tanggalKuta)}</li>
-                    </ul>
-                `;
-            }
-            if (tanahlotTickets > 0) {
-                const tanggalTanahlot = document.getElementById('tanggal-tanahlot').value;
-                summaryHTML += `
-                    <p>Tanah Lot:</p>
-                    <ul>
-                        <li>Jumlah Tiket: ${tanahlotTickets} (Rp ${totals.tanahlot.toLocaleString()})</li>
-                        <li>Tanggal Kunjungan: ${formatDate(tanggalTanahlot)}</li>
-                    </ul>
-                `;
-            }
-            if (ubudTickets > 0) {
-                const tanggalUbud = document.getElementById('tanggal-ubud').value;
-                summaryHTML += `
-                    <p>Ubud Monkey Forest:</p>
-                    <ul>
-                        <li>Jumlah Tiket: ${ubudTickets} (Rp ${totals.ubud.toLocaleString()})</li>
-                        <li>Tanggal Kunjungan: ${formatDate(tanggalUbud)}</li>
-                    </ul>
-                `;
-            }
-
-            summaryHTML += `<h3>Total Pembayaran: Rp ${totals.total.toLocaleString()}</h3>`;
-
-            document.getElementById('ringkasan').innerHTML = summaryHTML;
-            
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            currentStep++;
-            document.getElementById(`step${currentStep}`).classList.add('active');
+        if (!wisata || jumlahTiket <= 0 || !tanggalKunjungan) {
+            alert("Lengkapi semua pilihan sebelum melanjutkan.");
+            return;
         }
+
+        // Hitung total bayar berdasarkan pilihan destinasi dan jumlah tiket
+        let hargaPerOrang;
+        switch (document.getElementById("pilih-wisata").value) {
+            case "kuta":
+                hargaPerOrang = 50000;
+                break;
+            case "tanahlot":
+                hargaPerOrang = 75000;
+                break;
+            case "ubud":
+                hargaPerOrang = 60000;
+                break;
+            default:
+                hargaPerOrang = 0;
+                break;
+        }
+        const totalBayar = hargaPerOrang * jumlahTiket;
+
+        // Tampilkan ringkasan
+        document.getElementById("ringkasan").innerHTML = `
+            <p><strong>Destinasi:</strong> ${wisata}</p>
+            <p><strong>Jumlah Tiket:</strong> ${jumlahTiket}</p>
+            <p><strong>Tanggal Kunjungan:</strong> ${tanggalKunjungan}</p>
+            <p><strong>Total Bayar:</strong> Rp ${totalBayar.toLocaleString()}</p>
+        `;
+
+        // Sembunyikan step2 dan tampilkan step3
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "block";
+
+        // Isi elemen tersembunyi untuk form
+        document.getElementById("form-destinasi").value = wisata;
+        document.getElementById("form-jumlah_tiket").value = jumlahTiket;
+        document.getElementById("form-tanggal_kunjungan").value = tanggalKunjungan;
+        document.getElementById("form-total_bayar").value = totalBayar;
+    }
+        // function formatDate(dateString) {
+        //     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        //     return new Date(dateString).toLocaleDateString('id-ID', options);
+        // }
+
+        // function showSummary() {
+        //     if (!validateDates()) return;
+
+        //     const nama = document.getElementById('nama').value;
+        //     const email = document.getElementById('email').value;
+        //     const totals = calculateTotal();
+            
+        //     const kutaTickets = parseInt(document.getElementById('jumlah-kuta').value) || 0;
+        //     const tanahlotTickets = parseInt(document.getElementById('jumlah-tanahlot').value) || 0;
+        //     const ubudTickets = parseInt(document.getElementById('jumlah-ubud').value) || 0;
+
+        //     if (kutaTickets + tanahlotTickets + ubudTickets === 0) {
+        //         alert('Mohon pilih minimal 1 tiket wisata!');
+        //         return;
+        //     }
+
+        //     let summaryHTML = `
+        //         <h3>Data Pemesan:</h3>
+        //         <p>Nama: ${nama}</p>
+        //         <p>Email: ${email}</p>
+        //         <h3>Detail Pemesanan:</h3>
+        //     `;
+
+        //     if (kutaTickets > 0) {
+        //         const tanggalKuta = document.getElementById('tanggal-kuta').value;
+        //         summaryHTML += `
+        //             <p>Pantai Kuta:</p>
+        //             <ul>
+        //                 <li>Jumlah Tiket: ${kutaTickets} (Rp ${totals.kuta.toLocaleString()})</li>
+        //                 <li>Tanggal Kunjungan: ${formatDate(tanggalKuta)}</li>
+        //             </ul>
+        //         `;
+        //     }
+        //     if (tanahlotTickets > 0) {
+        //         const tanggalTanahlot = document.getElementById('tanggal-tanahlot').value;
+        //         summaryHTML += `
+        //             <p>Tanah Lot:</p>
+        //             <ul>
+        //                 <li>Jumlah Tiket: ${tanahlotTickets} (Rp ${totals.tanahlot.toLocaleString()})</li>
+        //                 <li>Tanggal Kunjungan: ${formatDate(tanggalTanahlot)}</li>
+        //             </ul>
+        //         `;
+        //     }
+        //     if (ubudTickets > 0) {
+        //         const tanggalUbud = document.getElementById('tanggal-ubud').value;
+        //         summaryHTML += `
+        //             <p>Ubud Monkey Forest:</p>
+        //             <ul>
+        //                 <li>Jumlah Tiket: ${ubudTickets} (Rp ${totals.ubud.toLocaleString()})</li>
+        //                 <li>Tanggal Kunjungan: ${formatDate(tanggalUbud)}</li>
+        //             </ul>
+        //         `;
+        //     }
+
+        //     summaryHTML += `<h3>Total Pembayaran: Rp ${totals.total.toLocaleString()}</h3>`;
+
+        //     document.getElementById('ringkasan').innerHTML = summaryHTML;
+            
+        //     document.getElementById(`step${currentStep}`).classList.remove('active');
+        //     currentStep++;
+        //     document.getElementById(`step${currentStep}`).classList.add('active');
+        // }
 
         function prepareFormData() {
     // Ambil nilai dari elemen HTML dan assign ke form input yang baru
