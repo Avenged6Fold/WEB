@@ -1,6 +1,6 @@
-## Liburin Aja
+## Si Jeli
 
-Website Static seputar info tempat pariwisata dan kuliner untuk daerah Banten, Jakarta, Jawa Barat, Jawa Tengah, Yogyakarta, dan Jawa Timur
+Website Static seputar info tempat wisata untuk daerah Jember
 
 ### Languages and Tools :
 
