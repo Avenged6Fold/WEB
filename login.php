@@ -141,9 +141,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="link-group">
                             <a href="index.php" class="back-link">Back</a>
                             <a href="register.php" class="register-link">Register</a>
+                            <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordLabel">Forgot Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="forgot_password.php" method="post">
+                    <div class="mb-3">
+                        <label for="forgotEmail" class="form-label">Enter your email</label>
+                        <input type="email" class="form-control" id="forgotEmail" name="forgotEmail" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Verification Email</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>
