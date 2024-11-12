@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Nov 2024 pada 17.20
+-- Waktu pembuatan: 12 Nov 2024 pada 13.26
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -61,16 +61,19 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `role` enum('pembeli','admin') NOT NULL DEFAULT 'pembeli'
+  `role` enum('pembeli','admin') NOT NULL DEFAULT 'pembeli',
+  `reset_token` varchar(100) DEFAULT NULL,
+  `token_expiry` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`) VALUES
-(14, 'Dawam', 'usernoorcell123@gmail.com', '$2y$10$jh45n.msA7Uqd9tY8a1RBOEC.8jRqi/ZKBUknc0yyihGHxm58Iws.', '2024-11-11 15:49:17', 'pembeli'),
-(15, 'Adminn', 'admin@gmail.com', '$2y$10$rhMZqb5A/trVVAy9Upur2eYvWFImKS4M6NTCEteiNxqHd12LTl1ye', '2024-11-11 15:52:47', 'admin');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`, `reset_token`, `token_expiry`) VALUES
+(14, 'Dawam', 'fhanwam@gmail.com', '$2y$10$MlTbww59PiVWP65mAcyn7.TlBaYdZR9CVDIbJq2G0r/5tK5qrJX6K', '2024-11-11 15:49:17', 'pembeli', NULL, NULL),
+(15, 'Adminn', 'admin@gmail.com', '$2y$10$rhMZqb5A/trVVAy9Upur2eYvWFImKS4M6NTCEteiNxqHd12LTl1ye', '2024-11-11 15:52:47', 'admin', NULL, NULL),
+(16, 'Kingwam', 'usernoorcell123@gmail.com', '$2y$10$5p.oECzKtDG2JlmSgdlQPOkPQxjt1Fjdys8S4O0fggAlReILJF78O', '2024-11-12 12:10:19', 'admin', 'c3feaa21d283e2c2f99e3149b81703109ff49ca4f0e030a05f7a425a75a33270635007c5bea1a8b1dc646fd3c0c361656beb', '2024-11-12 21:10:58');
 
 -- --------------------------------------------------------
 
@@ -134,7 +137,7 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `wisata`
