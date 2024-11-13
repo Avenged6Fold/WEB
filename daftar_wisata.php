@@ -26,7 +26,7 @@ include 'db.php';
       <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
-          <form action="proses2.php?aksi=tambah_wisata" method="post">
+          <form action="proses2.php?aksi=tambah_wisata" method="post" enctype="multipart/form-data">
           <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Form Tambah Wisata</h4>
@@ -51,6 +51,10 @@ include 'db.php';
                 <div class="form-group">
                   <label for="harga_tiket">Harga Tiket</label>
                   <input type="number" class="form-control" name="harga_tiket" id="harga_tiket" placeholder="Harga Tiket" required>
+                </div>
+                <div class="form-group">
+                  <label for="gambar">Gambar Wisata</label>
+                  <input type="file" class="form-control" name="gambar" id="gambar" accept="image/*" required>
                 </div>
               </div>
               <div class="modal-footer">
@@ -92,6 +96,14 @@ include 'db.php';
                   <label for="harga_tiket">Harga Tiket</label>
                   <input type="number" class="form-control" name="harga_tiket" id="edit_harga_tiket" placeholder="Harga Tiket">
                 </div>
+                <div class="form-group">
+                  <label for="edit_gambar">Gambar Wisata</label>
+                  <input type="file" class="form-control" name="gambar" id="edit_gambar" accept="image/*">
+                </div>
+                <div class="form-group">
+                  <label>Gambar Saat Ini</label>
+                  <img id="current_image" src="" alt="Current Image" style="width: 100px; display: none;">
+                </div>
               </div>
               <div class="modal-footer">
                 <input type="button" value="Update" class="btn btn-success" onclick="update_wisata()" />
@@ -102,44 +114,53 @@ include 'db.php';
       </div>
 
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nama Wisata</th>
-              <th>Alamat Wisata</th>
-              <th>Deskripsi</th>
-              <th>Jam Operasional</th>
-              <th>Harga Tiket</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-          <?php
-              // Fetch data using PDO
-              $query = "SELECT * FROM wisata";
-              $stmt = $pdo->prepare($query);
-              $stmt->execute();
-              $wisataData = $stmt->fetchAll();
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nama Wisata</th>
+                <th>Alamat Wisata</th>
+                <th>Deskripsi</th>
+                <th>Jam Operasional</th>
+                <th>Harga Tiket</th>
+                <th>Gambar</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+                // Fetch data using PDO
+                $query = "SELECT * FROM wisata";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+                $wisataData = $stmt->fetchAll();
 
-              foreach ($wisataData as $wisata) {
-                echo "<tr>";
-                echo "<td>" . $wisata['id'] . "</td>";
-                echo "<td>" . $wisata['nama_wisata'] . "</td>";
-                echo "<td>" . $wisata['alamat_wisata'] . "</td>";
-                echo "<td>" . $wisata['deskripsi_wisata'] . "</td>";
-                echo "<td>" . $wisata['operasional'] . "</td>";
-                echo "<td>" . $wisata['harga_tiket'] . "</td>";
-                echo "<td>
-                        <a href='#' class='btn btn-info edit' onclick='edit_wisata(" . $wisata['id'] . ")'><i class='fa fa-edit'></i></a> |
-                        <a href='proses2.php?aksi=delete_wisata&id=" . $wisata['id'] . "' class='btn btn-danger' onclick='return confirm(\"Yakin hapus data ini?\")'><i class='fa fa-trash'></i></a>
-                      </td>";
-                echo "</tr>";
-              }
-            ?>
-          </tbody>
-        </table>
-      </div>
+                foreach ($wisataData as $wisata) {
+                  echo "<tr>";
+                  echo "<td>" . $wisata['id'] . "</td>";
+                  echo "<td>" . $wisata['nama_wisata'] . "</td>";
+                  echo "<td>" . $wisata['alamat_wisata'] . "</td>";
+                  echo "<td>" . $wisata['deskripsi_wisata'] . "</td>";
+                  echo "<td>" . $wisata['operasional'] . "</td>";
+                  echo "<td>" . $wisata['harga_tiket'] . "</td>";
+                  
+                  // Display the image, if available
+                  if ($wisata['gambar']) {
+                    echo "<td><img src='uploads/" . $wisata['gambar'] . "' alt='Gambar Wisata' style='width: 100px;'></td>";
+                  } else {
+                    echo "<td>No Image</td>";
+                  }
+
+                  echo "<td>
+                          <a href='#' class='btn btn-info edit' onclick='edit_wisata(" . $wisata['id'] . ")'><i class='fa fa-edit'></i></a> |
+                          <a href='proses2.php?aksi=delete_wisata&id=" . $wisata['id'] . "' class='btn btn-danger' onclick='return confirm(\"Yakin hapus data ini?\")'><i class='fa fa-trash'></i></a>
+                        </td>";
+                  echo "</tr>";
+                }
+              ?>
+            </tbody>
+          </table>
+        </div>
     </div>
   </section>
 </div>
@@ -157,12 +178,15 @@ include 'db.php';
         $("#edit_deskripsi_wisata").val(result.deskripsi_wisata);
         $("#edit_operasional").val(result.operasional);
         $("#edit_harga_tiket").val(result.harga_tiket);
+        if (result.gambar) {
+          $("#current_image").attr("src", "uploads/" + result.gambar).show();
+        }
       },
       error: function() {
         alert("Error fetching data");
       }
     });
-  }
+}
 
   function update_wisata() {
     $.ajax({
