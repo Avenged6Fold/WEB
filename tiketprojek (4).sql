@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Nov 2024 pada 07.35
+-- Waktu pembuatan: 13 Nov 2024 pada 13.59
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -71,7 +71,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`, `reset_token`, `token_expiry`) VALUES
-(14, 'Dawam', 'fhanwam@gmail.com', '$2y$10$gzmMR22y7eeU0X/Py6poJ.CkXvgP1imodBRjRdQFvhe1dr0b/ngvi', '2024-11-11 15:49:17', 'pembeli', '24b9e03c0e4d263f7a68aab6e8c9d25042a2a48c018cbf5de8ab5d2fbd2263dfdbceb08e67ed175cef8f91f97c5afe3e489d', '2024-11-13 15:31:38'),
+(14, 'Dawam', 'fhanwam@gmail.com', '$2y$10$gzmMR22y7eeU0X/Py6poJ.CkXvgP1imodBRjRdQFvhe1dr0b/ngvi', '2024-11-11 15:49:17', 'pembeli', '7fb28e718fce009cf4635028e8c110293e73f8d2224c31ff0d20e32c6a0946905686b5af13660c5ad54f56197f7e3c81a477', '2024-11-13 16:05:05'),
 (15, 'Adminn', 'admin@gmail.com', '$2y$10$rhMZqb5A/trVVAy9Upur2eYvWFImKS4M6NTCEteiNxqHd12LTl1ye', '2024-11-11 15:52:47', 'admin', NULL, NULL),
 (16, 'Kingwam', 'usernoorcell123@gmail.com', '$2y$10$eEt76ouYgtaHDjK5lSt3Kec4Y0IQmgg6fHo9cF82webVQPl3cdw1G', '2024-11-12 12:10:19', 'admin', NULL, NULL);
 
@@ -88,16 +88,16 @@ CREATE TABLE `wisata` (
   `alamat_wisata` varchar(255) DEFAULT NULL,
   `deskripsi_wisata` text DEFAULT NULL,
   `operasional` varchar(20) DEFAULT NULL,
-  `harga_tiket` decimal(10,0) DEFAULT NULL
+  `harga_tiket` decimal(10,0) DEFAULT NULL,
+  `gambar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `wisata`
 --
 
-INSERT INTO `wisata` (`id`, `nama_wisata`, `alamat_wisata`, `deskripsi_wisata`, `operasional`, `harga_tiket`) VALUES
-(1, 'Papuma', 'Wuluhan', 'dknwinid', '09.00-17.00', 200000),
-(2, 'dnwindiwd', 'ndiwndi', 'jwndwnd', '09.00-17.00', 888888);
+INSERT INTO `wisata` (`id`, `nama_wisata`, `alamat_wisata`, `deskripsi_wisata`, `operasional`, `harga_tiket`, `gambar`) VALUES
+(4, 'Papuma', 'Wuluhan,Jember', 'Pantai Papuma adalah sebuah pantai yang menjadi tempat wisata di Kabupaten Jember, Provinsi Jawa Timur, Indonesia.Nama Papuma sendiri sebenarnya adalah sebuah singkatan dari “Pasir Putih Malikan. Pantai papuma berada di Desa Lojejer, Kecamatan Wuluhan, Kabupaten Jember.', '09.00-17.00', 25000, 'sawarna.jpg');
 
 --
 -- Indexes for dumped tables
@@ -143,7 +143,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `wisata`
 --
 ALTER TABLE `wisata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
