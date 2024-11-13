@@ -3,8 +3,33 @@ session_start();
 include 'db.php';
 
 $error_message = ""; // Variabel untuk menyimpan pesan error
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // proses login
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['loggedin'] = true;
+        $_SESSION['user'] = $user['email'];
+        $_SESSION['role'] = $user['role'];
+
+        // Redirect berdasarkan peran
+        if ($user['role'] == 'admin') {
+            header("Location: dashboard2.php");
+        } else {
+            $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
+            header("Location: $redirect");
+        }
+        exit();
+    } else {
+        $error_message = "Email atau password salah!";
+    }
 }
 
 // Tampilkan notifikasi dari session
@@ -205,12 +230,13 @@ if (isset($_SESSION['notification'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Show error modal if there's an error message
-        <?php if (!empty($error_message)) : ?>
-            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {});
-            errorModal.show();
-        <?php endif; ?>
-    </script>
+    // Tampilkan modal error jika ada pesan error
+    <?php if (!empty($error_message)) : ?>
+        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {});
+        errorModal.show();
+    <?php endif; ?>
+</script>
+
 </body>
 
 </html>
