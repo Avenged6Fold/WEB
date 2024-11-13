@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Nov 2024 pada 13.26
+-- Waktu pembuatan: 13 Nov 2024 pada 07.35
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -71,9 +71,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`, `reset_token`, `token_expiry`) VALUES
-(14, 'Dawam', 'fhanwam@gmail.com', '$2y$10$MlTbww59PiVWP65mAcyn7.TlBaYdZR9CVDIbJq2G0r/5tK5qrJX6K', '2024-11-11 15:49:17', 'pembeli', NULL, NULL),
+(14, 'Dawam', 'fhanwam@gmail.com', '$2y$10$gzmMR22y7eeU0X/Py6poJ.CkXvgP1imodBRjRdQFvhe1dr0b/ngvi', '2024-11-11 15:49:17', 'pembeli', '24b9e03c0e4d263f7a68aab6e8c9d25042a2a48c018cbf5de8ab5d2fbd2263dfdbceb08e67ed175cef8f91f97c5afe3e489d', '2024-11-13 15:31:38'),
 (15, 'Adminn', 'admin@gmail.com', '$2y$10$rhMZqb5A/trVVAy9Upur2eYvWFImKS4M6NTCEteiNxqHd12LTl1ye', '2024-11-11 15:52:47', 'admin', NULL, NULL),
-(16, 'Kingwam', 'usernoorcell123@gmail.com', '$2y$10$5p.oECzKtDG2JlmSgdlQPOkPQxjt1Fjdys8S4O0fggAlReILJF78O', '2024-11-12 12:10:19', 'admin', 'c3feaa21d283e2c2f99e3149b81703109ff49ca4f0e030a05f7a425a75a33270635007c5bea1a8b1dc646fd3c0c361656beb', '2024-11-12 21:10:58');
+(16, 'Kingwam', 'usernoorcell123@gmail.com', '$2y$10$eEt76ouYgtaHDjK5lSt3Kec4Y0IQmgg6fHo9cF82webVQPl3cdw1G', '2024-11-12 12:10:19', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 

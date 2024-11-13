@@ -1,9 +1,8 @@
 <?php
+session_start();
 include 'db.php';
 date_default_timezone_set('Asia/Jakarta'); // Ganti dengan zona waktu Anda
 
-
-// Include PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/phpmailer/phpmailer/src/Exception.php';
@@ -27,16 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sss", $token, $expiry, $email);
         $stmt->execute();
 
-        $resetLink = "localhost/web-projek/verify_reset.php?token=" . $token;
+        $resetLink = "http://localhost/web-projek/verify_reset.php?token=" . $token;
 
-        // Konfigurasi PHPMailer
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Gunakan Gmail atau SMTP lain
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'fhanwam@gmail.com'; // Ganti dengan email Anda
-            $mail->Password = 'bbqa pnvt fniz phts'; // Ganti dengan password email
+            $mail->Username = 'fhanwam@gmail.com';
+            $mail->Password = 'bbqa pnvt fniz phts';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
@@ -48,13 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Body = "Click the following link to reset your password: <a href='$resetLink'>$resetLink</a>";
 
             $mail->send();
-            echo "Please check your email to verify and reset your password.";
+            $_SESSION['notification'] = "Please check your email to verify and reset your password.";
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $_SESSION['notification'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     } else {
-        echo "Email not found!";
+        $_SESSION['notification'] = "Email not found!";
     }
-}
 
+    // Redirect back to login.php
+    header("Location: login.php");
+    exit();
+}
 ?>

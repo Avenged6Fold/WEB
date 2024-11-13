@@ -343,8 +343,8 @@ session_start();
             </video>
 
             <div class="hero-content">
-                <h1>Jelajahi Keindahan Indonesia</h1>
-                <p>Platform Tiket Wisata Di Jember Yang Mana Juga Menyediakan Tips Liburan dan Tempat Kuliner Di Jember</p>
+                <h1>Jelajahi Keindahan Jember</h1>
+                <p>Platform Pemesanan Tiket Wisata Di Daerah Jember Yang Mana Juga Menyediakan Detail-Detail Wisata Di Jember</p>
                 <a href="#destinasi" class="btn">Mulai Menjelajah</a>
             </div>
         </section>
