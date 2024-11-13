@@ -53,6 +53,17 @@ if ($aksi == 'tambah_wisata') {
 } elseif ($aksi == 'delete_wisata') {
     // Handle delete wisata
     $id = $_GET['id'];
+    
+    // Optionally delete the image file from the server
+    $query = "SELECT gambar FROM wisata WHERE id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$id]);
+    $result = $stmt->fetch();
+    if ($result && $result['gambar'] && file_exists("uploads/" . $result['gambar'])) {
+        unlink("uploads/" . $result['gambar']);
+    }
+
+    // Delete the record from the database
     $query = "DELETE FROM wisata WHERE id = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$id]);

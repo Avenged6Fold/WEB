@@ -3,9 +3,7 @@ include 'header.php';
 include 'db.php';
 ?>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
   <section class="content">
     <div class="box">
       <div class="box-header with-border">
@@ -57,8 +55,9 @@ include 'db.php';
                   <input type="file" class="form-control" name="gambar" id="gambar" accept="image/*" required>
                 </div>
               </div>
-              <div class="modal-footer">
-                <input type="submit" value="Daftar" name="daftar" class="btn btn-success"/>
+              <div class="form-group">
+                <label for="deskripsi_wisata">Deskripsi Wisata</label>
+                <textarea class="form-control" name="deskripsi_wisata" required></textarea>
               </div>
             </form>
           </div>
@@ -113,6 +112,7 @@ include 'db.php';
         </div>
       </div>
 
+      <!-- Existing code for displaying wisata data -->
       <div class="box-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
