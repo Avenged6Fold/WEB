@@ -3,7 +3,9 @@ include 'header.php';
 include 'db.php';
 ?>
 
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
   <section class="content">
     <div class="box">
       <div class="box-header with-border">
@@ -55,9 +57,8 @@ include 'db.php';
                   <input type="file" class="form-control" name="gambar" id="gambar" accept="image/*" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="deskripsi_wisata">Deskripsi Wisata</label>
-                <textarea class="form-control" name="deskripsi_wisata" required></textarea>
+              <div class="modal-footer">
+                <input type="submit" value="Daftar" name="daftar" class="btn btn-success"/>
               </div>
             </form>
           </div>
@@ -112,7 +113,6 @@ include 'db.php';
         </div>
       </div>
 
-      <!-- Existing code for displaying wisata data -->
       <div class="box-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -188,13 +188,18 @@ include 'db.php';
     });
 }
 
-  function update_wisata() {
+function update_wisata() {
+    // Menggunakan FormData untuk mendukung pengiriman file
+    var formData = new FormData($("#form_edit")[0]);
+
     $.ajax({
       url: 'proses2.php?aksi=update_wisata',
       type: 'POST',
-      data: $("#form_edit").serialize(),
+      data: formData,
+      contentType: false,
+      processData: false,
       success: function(res) {
-        if (res == "1") {
+        if (res.trim() == "1") { // Pastikan untuk menghilangkan whitespace tambahan
           location.reload(true);
         } else {
           alert("Failed to update data");

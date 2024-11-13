@@ -36,20 +36,27 @@ if ($aksi == 'tambah_wisata') {
     $operasional = $_POST['operasional'];
     $harga_tiket = $_POST['harga_tiket'];
     $gambar = $_FILES['gambar']['name'];
-    
+
+    $target_dir = "uploads/";
+    $update_query = "UPDATE wisata SET nama_wisata = ?, alamat_wisata = ?, deskripsi_wisata = ?, operasional = ?, harga_tiket = ?";
+    $params = [$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket];
+
+    // Jika ada gambar baru, maka update juga gambar
     if ($gambar) {
         $target_file = $target_dir . basename($gambar);
         if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
-            $query = "UPDATE wisata SET nama_wisata = ?, alamat_wisata = ?, deskripsi_wisata = ?, operasional = ?, harga_tiket = ?, gambar = ? WHERE id = ?";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket, $gambar, $id]);
+            $update_query .= ", gambar = ?";
+            $params[] = $gambar;
         }
-    } else {
-        $query = "UPDATE wisata SET nama_wisata = ?, alamat_wisata = ?, deskripsi_wisata = ?, operasional = ?, harga_tiket = ? WHERE id = ?";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket, $id]);
     }
-    echo "1";
+    $update_query .= " WHERE id = ?";
+    $params[] = $id;
+
+    $stmt = $pdo->prepare($update_query);
+    $stmt->execute($params);
+
+    echo "1"; // Pastikan tidak ada karakter tambahan setelah ini
+    exit;
 } elseif ($aksi == 'delete_wisata') {
     // Handle delete wisata
     $id = $_GET['id'];
