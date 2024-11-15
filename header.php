@@ -160,8 +160,8 @@
 
         </li>
         <li>
-          <a href="absen1.php">
-            <i class="fa fa-check"></i> <span>Absen</span>
+          <a href="datapembayaran.php">
+            <i class="fa fa-check"></i> <span>Data Pembayaran</span>
           </a>
 
         </li>

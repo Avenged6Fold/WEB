@@ -8,6 +8,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liburin Aja - Modern</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -272,6 +274,13 @@ session_start();
             color: var(--primary-color);
         }
 
+
+        .swal2-confirm {
+            margin-right: 10px; /* Menambahkan jarak antara tombol "Login" dan "Batal" */
+        }
+
+
+
         .footer-bottom {
             text-align: center;
             margin-top: 2rem;
@@ -469,16 +478,34 @@ session_start();
     </script>
 
     <script>
-        function checkLogin() {
-            // Cek apakah pengguna sudah login
-            var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
+       function checkLogin() {
+    // Cek apakah pengguna sudah login
+    var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
 
-            if (loggedIn === 'false') {
-                alert("Anda harus login terlebih dahulu untuk memesan tiket!");
+    if (loggedIn === 'false') {
+        // Menampilkan SweetAlert2 dengan tombol Cancel dan Konfirmasi
+        Swal.fire({
+            title: 'Anda belum login!',
+            text: 'Anda harus login terlebih dahulu untuk memesan tiket!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Login',
+            cancelButtonText: 'Batal',
+            customClass: {
+                confirmButton: 'swal2-confirm btn btn-primary',
+                cancelButton: 'swal2-cancel btn btn-secondary'
+            },
+            buttonsStyling: false
+        }).then((result) => {
+            if (result.isConfirmed) {
                 // Redirect ke halaman login dengan parameter redirect
                 window.location.href = "login.php?redirect=index.php";
-            } 
-        } 
+            }
+        });
+    }
+}
+
+
     </script>
 </body>
 </html>

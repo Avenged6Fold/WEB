@@ -314,21 +314,21 @@ session_start();
 	<script src="https://use.fontawesome.com/89b8dcd205.js"></script>
 <body>
 	<header>
-        <nav class="container">
+    <nav class="container">
             <div class="logo">Jeli</div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
-                    <li><a href="contact_us.html">Contact</a></li>
+                    <li><a href="contact_us.php">Contact</a></li>
                     <div class="logout-link">
                         <li><a href="logout.php">Logout</a></li>
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
-                    <li><a href="contact_us.html">Contact</a></li>
+                    <li><a href="contact_us.php">Contact</a></li>
                 <?php endif; ?>
             </ul>
 
@@ -451,5 +451,52 @@ session_start();
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Sticky header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // Fetch and display COVID-19 data
+        async function fetchCovidData() {
+            try {
+                const response = await fetch('https://api.kawalcorona.com/indonesia/');
+                const data = await response.json();
+                document.getElementById('positif').textContent = data[0].positif;
+                document.getElementById('sembuh').textContent = data[0].sembuh;
+                document.getElementById('meninggal').textContent = data[0].meninggal;
+                document.getElementById('dirawat').textContent = data[0].dirawat;
+            } catch (error) {
+                console.error('Error fetching COVID-19 data:', error);
+            }
+        }
+
+        // Call fetchCovidData function when the page loads
+        window.addEventListener('load', fetchCovidData);
+    </script>
+
+    <script>
+        function checkLogin() {
+            // Cek apakah pengguna sudah login
+            var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
+
+            if (loggedIn === 'false') {
+                alert("Anda harus login terlebih dahulu untuk memesan tiket!");
+                // Redirect ke halaman login dengan parameter redirect
+                window.location.href = "login.php?redirect=index.php";
+            } 
+        } 
+    </script>
 </body>
 </html>
