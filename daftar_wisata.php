@@ -57,6 +57,13 @@ include 'db.php';
                   <input type="file" class="form-control" name="gambar" id="gambar" accept="image/*" required>
                 </div>
               </div>
+              <div class="form-group">
+                  <label for="populer">Populer</label>
+                  <select class="form-control" name="populer" id="populer" required>
+                    <option value="1">Populer</option>
+                    <option value="0">Tidak Populer</option>
+                  </select>
+                </div>
               <div class="modal-footer">
                 <input type="submit" value="Daftar" name="daftar" class="btn btn-success"/>
               </div>
@@ -105,6 +112,13 @@ include 'db.php';
                   <img id="current_image" src="" alt="Current Image" style="width: 100px; display: none;">
                 </div>
               </div>
+              <div class="form-group">
+                  <label for="edit_populer">Populer</label>
+                  <select class="form-control" name="populer" id="edit_populer" required>
+                    <option value="1">Populer</option>
+                    <option value="0">Tidak Populer</option>
+                  </select>
+                </div>
               <div class="modal-footer">
                 <input type="button" value="Update" class="btn btn-success" onclick="update_wisata()" />
               </div>
@@ -124,6 +138,7 @@ include 'db.php';
                 <th>Jam Operasional</th>
                 <th>Harga Tiket</th>
                 <th>Gambar</th>
+                <th>Populer</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -134,10 +149,11 @@ include 'db.php';
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
                 $wisataData = $stmt->fetchAll();
+                $no = 1;
 
                 foreach ($wisataData as $wisata) {
                   echo "<tr>";
-                  echo "<td>" . $wisata['id'] . "</td>";
+                  echo "<td>" . $no++ . "</td>";
                   echo "<td>" . $wisata['nama_wisata'] . "</td>";
                   echo "<td>" . $wisata['alamat_wisata'] . "</td>";
                   echo "<td>" . $wisata['deskripsi_wisata'] . "</td>";
@@ -150,7 +166,7 @@ include 'db.php';
                   } else {
                     echo "<td>No Image</td>";
                   }
-
+                  echo "<td>" . ($wisata['populer'] ? 'Ya' : 'Tidak') . "</td>";
                   echo "<td>
                           <a href='#' class='btn btn-info edit' onclick='edit_wisata(" . $wisata['id'] . ")'><i class='fa fa-edit'></i></a> |
                           <a href='proses2.php?aksi=delete_wisata&id=" . $wisata['id'] . "' class='btn btn-danger' onclick='return confirm(\"Yakin hapus data ini?\")'><i class='fa fa-trash'></i></a>
@@ -166,7 +182,7 @@ include 'db.php';
 </div>
 
 <script type="text/javascript">
-  function edit_wisata(id) {
+ function edit_wisata(id) {
     $.ajax({
       url: 'proses2.php?aksi=edit_data_wisata&id=' + id,
       dataType: 'JSON',
@@ -178,6 +194,7 @@ include 'db.php';
         $("#edit_deskripsi_wisata").val(result.deskripsi_wisata);
         $("#edit_operasional").val(result.operasional);
         $("#edit_harga_tiket").val(result.harga_tiket);
+        $("#edit_populer").val(result.populer); // Set nilai dropdown
         if (result.gambar) {
           $("#current_image").attr("src", "uploads/" + result.gambar).show();
         }
@@ -187,6 +204,7 @@ include 'db.php';
       }
     });
 }
+
 
 function update_wisata() {
     // Menggunakan FormData untuk mendukung pengiriman file

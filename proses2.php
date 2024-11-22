@@ -8,14 +8,16 @@ if ($aksi == 'tambah_wisata') {
     $deskripsi_wisata = $_POST['deskripsi_wisata'];
     $operasional = $_POST['operasional'];
     $harga_tiket = $_POST['harga_tiket'];
+    $populer = $_POST['populer']; // Tambahkan populer
     $gambar = $_FILES['gambar']['name'];
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($gambar);
-    
+
     if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
-        $query = "INSERT INTO wisata (nama_wisata, alamat_wisata, deskripsi_wisata, operasional, harga_tiket, gambar) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO wisata (nama_wisata, alamat_wisata, deskripsi_wisata, operasional, harga_tiket, populer, gambar) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($query);
-        $stmt->execute([$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket, $gambar]);
+        $stmt->execute([$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket, $populer, $gambar]);
         header("Location: daftar_wisata.php");
     } else {
         echo "Error uploading file.";
@@ -35,11 +37,12 @@ if ($aksi == 'tambah_wisata') {
     $deskripsi_wisata = $_POST['deskripsi_wisata'];
     $operasional = $_POST['operasional'];
     $harga_tiket = $_POST['harga_tiket'];
+    $populer = $_POST['populer']; // Tambahkan populer
     $gambar = $_FILES['gambar']['name'];
 
     $target_dir = "uploads/";
-    $update_query = "UPDATE wisata SET nama_wisata = ?, alamat_wisata = ?, deskripsi_wisata = ?, operasional = ?, harga_tiket = ?";
-    $params = [$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket];
+    $update_query = "UPDATE wisata SET nama_wisata = ?, alamat_wisata = ?, deskripsi_wisata = ?, operasional = ?, harga_tiket = ?, populer = ?";
+    $params = [$nama_wisata, $alamat_wisata, $deskripsi_wisata, $operasional, $harga_tiket, $populer];
 
     // Jika ada gambar baru, maka update juga gambar
     if ($gambar) {
