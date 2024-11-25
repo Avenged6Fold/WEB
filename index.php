@@ -1,5 +1,11 @@
 <?php
 session_start();
+include('db.php'); // Menyertakan file koneksi database
+// Ambil data wisata populer menggunakan PDO
+$query = "SELECT * FROM wisata WHERE populer = 1"; // Query untuk mengambil data yang populer
+$stmt = $pdo->prepare($query); // Menyiapkan query
+$stmt->execute(); // Menjalankan query
+$destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil sebagai array asosiatif
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -390,22 +396,17 @@ session_start();
                     <h2>Destinasi Populer</h2>
                 </div>
                 <div class="destinations-grid">
-                    <div class="destination-card">
-                        <img src="img/papuma.jpg" alt="Pantai Papuma">
-                        <div class="destination-info">
-                            <h3>Pantai Papuma - Wuluhan</h3>
-                            <p>Pantai Papuma adalah sebuah pantai yang menjadi tempat wisata di Kabupaten Jember, Provinsi Jawa Timur, Indonesia.</p>
-                            <a href="#" class="btn">Baca lebih lanjut</a>
+                    <?php foreach ($destinasiWisata as $row): ?>
+                        <div class="destination-card">
+                            <img src="uploads/<?php echo htmlspecialchars($row['gambar']); ?>" alt="<?php echo htmlspecialchars($row['nama_wisata']); ?>">
+                            <div class="destination-info">
+                                <h3><?php echo htmlspecialchars($row['nama_wisata']); ?></h3>
+                                <p><?php echo htmlspecialchars($row['alamat_wisata']); ?></p>
+                                <p><?php echo htmlspecialchars($row['deskripsi_wisata']); ?></p>
+                                <a href="#" class="btn">Baca lebih lanjut</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="destination-card">
-                        <img src="img/Wisata-Rembangan.jpg" alt="Wisata Rembangan">
-                        <div class="destination-info">
-                            <h3>Puncak Rembangan - Rembangan</h3>
-                            <p>Wisata Alam Rembangan terletak 12 km arah utara kota Jember. Fasilitas yang dimiliki antara lain kolam Pemandian, Hotel, ruang pertemuan, restoran, arena bermain, agro wisata Kopi Kebun Rayap.</p>
-                            <a href="#" class="btn">Baca lebih lanjut</a>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>

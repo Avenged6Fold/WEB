@@ -167,11 +167,13 @@ session_start();
         }
 
         .destination-card {
-            background-color: #009ee5;
+            background-color: #fff;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         .destination-card:hover {
@@ -180,21 +182,56 @@ session_start();
 
         .destination-card img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
+            border-bottom: 1px solid #ddd;
         }
 
         .destination-info {
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
-        .destination-info h3 {
-            font-size: 1.5rem;
+        .destination-info h5 {
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
+            color: #333;
         }
 
         .destination-info p {
-            margin-bottom: 1rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-detail:hover {
+            background-color: #2980b9;
+        }
+
+        .card img {
+            width: 100%; /* Pastikan gambar menyesuaikan lebar container */
+            height: 500px; /* Atur tinggi tetap */
+            object-fit: cover; /* Memotong gambar jika rasio berbeda */
+            border-bottom: 1px solid #ddd;
+            border-radius: 10px 10px 0 0; /* Membuat sudut atas melengkung */
+        }
+
+        .card-body {
+            color: #000; /* Warna teks hitam untuk seluruh teks di dalam card */
+            text-align: left; /* Rata kiri untuk teks */
+        }
+
+        /* Button Text */
+        .btn {
+            color: #fff !important; /* Warna teks tombol tetap putih */
         }
 
         /* Footer Styles */
@@ -320,10 +357,18 @@ session_start();
 	<div class="container">
 		<div class="row mb-4 pt-4">
 			<div class="col-12">
-			<h1 class="text-center" style="color: #000000;">Destinasi</h1>
-            <div class="search-container text-center mt-4">
-                <input type="text" id="searchInput" class="form-control w-50 mx-auto" placeholder="Cari destinasi wisata...">
-            </div>
+			<h1 class="text-center" style="color: #000000;">Pencarian Destinasi</h1>
+            <div class="container">
+    <div class="search-bar">
+        <input type="text" id="search-input" class="form-control" placeholder="Cari wisata...">
+        <button id="search-button" class="btn btn-primary mt-2">Cari</button>
+    </div>
+
+    <div id="result-container" class="mt-4">
+        <!-- Hasil pencarian akan dimuat di sini -->
+    </div>
+</div>
+
 			</div>
 		</div>
 	</div>
@@ -331,9 +376,11 @@ session_start();
 
 	<!-- Content -->
 	<div class="container space">
-		<div class="row" id="location">
-		</div>
-	</div>
+    <div class="row" id="location">
+        <!-- Hasil pencarian destinasi akan ditampilkan di sini -->
+    </div>
+</div>
+
 
 	<!-- Section Footer -->
 	<div class="footer text-white">
@@ -392,9 +439,9 @@ session_start();
 	</div>
 
 	<script>
-		$(document).ready(function(){
-			destinasiJabar();
-		})
+		// $(document).ready(function(){
+		// 	destinasiJabar();
+		// })
 		// Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -411,22 +458,50 @@ session_start();
             header.classList.toggle('sticky', window.scrollY > 0);
         });
 
-        // Fetch and display COVID-19 data
-        async function fetchCovidData() {
-            try {
-                const response = await fetch('https://api.kawalcorona.com/indonesia/');
-                const data = await response.json();
-                document.getElementById('positif').textContent = data[0].positif;
-                document.getElementById('sembuh').textContent = data[0].sembuh;
-                document.getElementById('meninggal').textContent = data[0].meninggal;
-                document.getElementById('dirawat').textContent = data[0].dirawat;
-            } catch (error) {
-                console.error('Error fetching COVID-19 data:', error);
-            }
-        }
+        $(document).ready(function () {
+    $('#search-button').on('click', function () {
+        const search = $('#search-input').val();
 
-        // Call fetchCovidData function when the page loads
-        window.addEventListener('load', fetchCovidData);
+        $.ajax({
+            url: 'fetch_wisata.php',
+            method: 'GET',
+            data: { search: search },
+            dataType: 'json',
+            success: function (data) {
+    let content = '';
+
+    if (data.length > 0) {
+        data.forEach(function (item) {
+            content += `
+                <div class="card mb-3">
+                    <img src="uploads/${item.gambar}" class="card-img-top" alt="${item.nama_wisata}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.nama_wisata}</h5>
+                        <p class="card-text"><strong>Alamat:</strong> ${item.alamat_wisata}</p>
+                        <p class="card-text">${item.deskripsi_wisata}</p>
+                        <p class="card-text"><strong>Operasional:</strong> ${item.operasional}</p>
+                        <p class="card-text"><strong>Harga Tiket:</strong> Rp${item.harga_tiket}</p>
+                        <a href="#" class="btn btn-primary">Baca lebih lanjut</a>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        content = '<p>Data tidak ditemukan.</p>';
+    }
+
+    $('#result-container').html(content);
+},
+
+
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+
+
     </script>
 
     <script>

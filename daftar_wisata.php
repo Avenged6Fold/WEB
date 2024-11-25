@@ -144,36 +144,36 @@ include 'db.php';
             </thead>
             <tbody>
             <?php
-                // Fetch data using PDO
-                $query = "SELECT * FROM wisata";
-                $stmt = $pdo->prepare($query);
-                $stmt->execute();
-                $wisataData = $stmt->fetchAll();
-                $no = 1;
+            // Fetch data using PDO
+            $query = "SELECT * FROM wisata ORDER BY id DESC"; // Mengurutkan berdasarkan id secara descending
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+            $wisataData = $stmt->fetchAll();
+            $no = 1;
 
-                foreach ($wisataData as $wisata) {
-                  echo "<tr>";
-                  echo "<td>" . $no++ . "</td>";
-                  echo "<td>" . $wisata['nama_wisata'] . "</td>";
-                  echo "<td>" . $wisata['alamat_wisata'] . "</td>";
-                  echo "<td>" . $wisata['deskripsi_wisata'] . "</td>";
-                  echo "<td>" . $wisata['operasional'] . "</td>";
-                  echo "<td>" . $wisata['harga_tiket'] . "</td>";
-                  
-                  // Display the image, if available
-                  if ($wisata['gambar']) {
-                    echo "<td><img src='uploads/" . $wisata['gambar'] . "' alt='Gambar Wisata' style='width: 100px;'></td>";
-                  } else {
-                    echo "<td>No Image</td>";
-                  }
-                  echo "<td>" . ($wisata['populer'] ? 'Ya' : 'Tidak') . "</td>";
-                  echo "<td>
-                          <a href='#' class='btn btn-info edit' onclick='edit_wisata(" . $wisata['id'] . ")'><i class='fa fa-edit'></i></a> |
-                          <a href='proses2.php?aksi=delete_wisata&id=" . $wisata['id'] . "' class='btn btn-danger' onclick='return confirm(\"Yakin hapus data ini?\")'><i class='fa fa-trash'></i></a>
-                        </td>";
-                  echo "</tr>";
-                }
-              ?>
+            foreach ($wisataData as $wisata) {
+              echo "<tr>";
+              echo "<td>" . $no++ . "</td>";
+              echo "<td>" . $wisata['nama_wisata'] . "</td>";
+              echo "<td>" . $wisata['alamat_wisata'] . "</td>";
+              echo "<td>" . $wisata['deskripsi_wisata'] . "</td>";
+              echo "<td>" . $wisata['operasional'] . "</td>";
+              echo "<td>" . $wisata['harga_tiket'] . "</td>";
+
+              // Display the image, if available
+              if ($wisata['gambar']) {
+                echo "<td><img src='uploads/" . $wisata['gambar'] . "' alt='Gambar Wisata' style='width: 100px;'></td>";
+              } else {
+                echo "<td>No Image</td>";
+              }
+              echo "<td>" . ($wisata['populer'] ? 'Ya' : 'Tidak') . "</td>";
+              echo "<td>
+                      <a href='#' class='btn btn-info edit' onclick='edit_wisata(" . $wisata['id'] . ")'><i class='fa fa-edit'></i></a> |
+                      <a href='proses2.php?aksi=delete_wisata&id=" . $wisata['id'] . "' class='btn btn-danger' onclick='return confirm(\"Yakin hapus data ini?\")'><i class='fa fa-trash'></i></a>
+                    </td>";
+              echo "</tr>";
+            }
+            ?>
             </tbody>
           </table>
         </div>
