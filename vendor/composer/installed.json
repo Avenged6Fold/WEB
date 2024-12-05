@@ -83,6 +83,7 @@
                 }
             ],
             "install-path": "../phpmailer/phpmailer"
+<<<<<<< HEAD
         },
         {
             "name": "spipu/html2pdf",
@@ -218,6 +219,8 @@
                 }
             ],
             "install-path": "../tecnickcom/tcpdf"
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
     ],
     "dev": true,

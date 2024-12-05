@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "ee4547d8f85ed80d8c6b20538e0c5e44",
+=======
+    "content-hash": "baf0b1b659e688a64051c5ee9742a77e",
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -86,6 +90,7 @@
                 }
             ],
             "time": "2024-10-09T10:07:50+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "spipu/html2pdf",
@@ -215,6 +220,8 @@
                 }
             ],
             "time": "2024-10-26T12:15:02+00:00"
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
     ],
     "packages-dev": [],

@@ -1,5 +1,14 @@
 <?php
 session_start();
+<<<<<<< HEAD
+=======
+include('db.php'); // Menyertakan file koneksi database
+// Ambil data wisata populer menggunakan PDO
+$query = "SELECT * FROM wisata WHERE populer = 1"; // Query untuk mengambil data yang populer
+$stmt = $pdo->prepare($query); // Menyiapkan query
+$stmt->execute(); // Menjalankan query
+$destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil sebagai array asosiatif
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -327,7 +336,10 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                     <div class="logout-link">
@@ -335,7 +347,10 @@ session_start();
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                 <?php endif; ?>
@@ -392,6 +407,7 @@ session_start();
                     <h2>Destinasi Populer</h2>
                 </div>
                 <div class="destinations-grid">
+<<<<<<< HEAD
                     <div class="destination-card">
                         <img src="img/papuma.jpg" alt="Pantai Papuma">
                         <div class="destination-info">
@@ -408,6 +424,19 @@ session_start();
                             <a href="#" class="btn">Baca lebih lanjut</a>
                         </div>
                     </div>
+=======
+                    <?php foreach ($destinasiWisata as $row): ?>
+                        <div class="destination-card">
+                            <img src="uploads/<?php echo htmlspecialchars($row['gambar']); ?>" alt="<?php echo htmlspecialchars($row['nama_wisata']); ?>">
+                            <div class="destination-info">
+                                <h3><?php echo htmlspecialchars($row['nama_wisata']); ?></h3>
+                                <p><?php echo htmlspecialchars($row['alamat_wisata']); ?></p>
+                                <p><?php echo htmlspecialchars($row['deskripsi_wisata']); ?></p>
+                                <a href="#" class="btn">Baca lebih lanjut</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                 </div>
             </div>
         </section>

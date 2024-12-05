@@ -18,13 +18,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tanggal_kunjungan = $_POST['tanggal_kunjungan'];
     $total_bayar = $_POST['total_bayar'];
     $order_id = 'order-' . time() . '-' . rand(1000, 9999);
+<<<<<<< HEAD
     $transaction_status = 1;
+=======
+    $status_transaksi = 1;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     
     try {
         // Query untuk menyimpan data
         $stmt = $pdo->prepare("INSERT INTO pemesanan 
+<<<<<<< HEAD
             (nama, email, telepon, alamat, destinasi, jumlah_tiket, tanggal_kunjungan, total_bayar, order_id, transaction_status)
             VALUES (:nama, :email, :telepon, :alamat, :destinasi, :jumlah_tiket, :tanggal_kunjungan, :total_bayar, :order_id, :transaction_status)");
+=======
+            (nama, email, telepon, alamat, destinasi, jumlah_tiket, tanggal_kunjungan, total_bayar, order_id, status_transaksi)
+            VALUES (:nama, :email, :telepon, :alamat, :destinasi, :jumlah_tiket, :tanggal_kunjungan, :total_bayar, :order_id, :status_transaksi)");
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 
         // Bind parameter
         $stmt->bindParam(':nama', $nama);
@@ -36,7 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':tanggal_kunjungan', $tanggal_kunjungan);
         $stmt->bindParam(':total_bayar', $total_bayar);
         $stmt->bindParam(':order_id', $order_id);
+<<<<<<< HEAD
         $stmt->bindParam(':transaction_status', $transaction_status);
+=======
+        $stmt->bindParam(':status_transaksi', $status_transaksi);
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 
         // Eksekusi statement
         $stmt->execute();
@@ -145,7 +158,11 @@ nav {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
+<<<<<<< HEAD
     color: #08959A;
+=======
+    color: #3498db;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 }
 
 .nav-links {
@@ -165,7 +182,11 @@ nav {
 }
 
 .nav-links a:hover {
+<<<<<<< HEAD
     color: #08959A;
+=======
+    color: #3498db;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 }
 
 .logout-link {
@@ -182,7 +203,11 @@ body {
 }
 
 .container {
+<<<<<<< HEAD
     max-width: 500px;
+=======
+    max-width: 800px;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     margin: 0 auto;
     padding: 20px;
     /* Add padding-top to account for fixed navbar */
@@ -219,7 +244,11 @@ input, select {
     box-sizing: border-box;
 }
 button {
+<<<<<<< HEAD
     background-color: #08959A;
+=======
+    background-color: #4CAF50;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     color: white;
     padding: 10px 20px;
     border: none;
@@ -228,7 +257,11 @@ button {
     font-size: 16px;
 }
 button:hover {
+<<<<<<< HEAD
     background-color: #067f7a;
+=======
+    background-color: #45a049;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 }
 .wisata-card {
     border: 1px solid #ddd;
@@ -256,19 +289,33 @@ button:hover {
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
+=======
+                    <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
+                    <li><a href="#">Contact</a></li>
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <div class="logout-link">
                         <li><a href="logout.php">Logout</a></li>
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                 <?php endif; ?>
             </ul>
+=======
+                    <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
+                    <li><a href="#">Contact</a></li>
+                <?php endif; ?>
+            </ul>
+
+
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         </nav>
     </header>
     <div class="container">
@@ -297,6 +344,7 @@ button:hover {
         </div>
 
         <!-- Step 2: Pilih Wisata -->
+<<<<<<< HEAD
 <div class="step" id="step2">
     <h2>Langkah 2: Pilih Wisata</h2>
 
@@ -464,6 +512,8 @@ button:hover {
 
 
         <!-- Step 2: Pilih Wisata
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         <div class="step" id="step2">
             <h2>Langkah 2: Pilih Wisata</h2>
             <div class="wisata-card">
@@ -504,9 +554,15 @@ button:hover {
             </div>
             <button onclick="prevStep()">Kembali</button>
             <button onclick="showSummary()">Pesan Tiket</button>
+<<<<<<< HEAD
         </div> -->
 
          <!-- Step 3: Ringkasan
+=======
+        </div>
+
+         <!-- Step 3: Ringkasan -->
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         <div class="step" id="step3">
             <h2>Langkah 3: Ringkasan Pemesanan</h2>
             <div class="summary" id="ringkasan"></div>
@@ -526,9 +582,15 @@ button:hover {
                 <a href='./midtrans/examples/snap/checkout-process-simple-version.php?order_id=$order_id'></a>
                 </button>
             </form>
+<<<<<<< HEAD
         </div> -->
 
     <!-- <script>
+=======
+        </div>
+
+    <script>
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         const today = new Date().toISOString().split('T')[0];
         document.querySelectorAll('input[type="date"]').forEach(input => {
             input.min = today;
@@ -703,7 +765,11 @@ button:hover {
             // Di sini bisa ditambahkan logika untuk mengirim data ke server
             window.location.reload();
         }
+<<<<<<< HEAD
     </script> -->
+=======
+    </script>
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 
 
 </body>

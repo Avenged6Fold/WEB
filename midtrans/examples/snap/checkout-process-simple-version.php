@@ -97,7 +97,11 @@ function printExampleWarningMessage() {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <style>
         body {
+<<<<<<< HEAD
             background: linear-gradient(to right, #08959A , #08959A );
+=======
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             font-family: Arial, sans-serif;
         }
         .container {
@@ -124,7 +128,11 @@ function printExampleWarningMessage() {
             font-weight: bold;
         }
         .btn-primary {
+<<<<<<< HEAD
             background: #08959A ;
+=======
+            background: #6a11cb;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             border: none;
             padding: 12px 20px;
             font-size: 1rem;
@@ -134,17 +142,26 @@ function printExampleWarningMessage() {
             transition: background 0.3s ease;
         }
         .btn-primary:hover {
+<<<<<<< HEAD
             background: #08959A ;
+=======
+            background: #2575fc;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
 <div class="container">
+=======
+    <div class="container">
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         <div class="card">
             <div class="card-body">
                 <p>Selesaikan Pembayaran Sekarang</p>
                 <button id="pay-button" class="btn btn-primary">PILIH METODE PEMBAYARAN</button>
                 
+<<<<<<< HEAD
                 <!-- Midtrans Snap Script -->
                 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?php echo Config::$clientKey;?>"></script>
                 <script type="text/javascript">
@@ -168,6 +185,14 @@ function printExampleWarningMessage() {
                                 console.log(result);
                             }
                         });
+=======
+                <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
+                <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?php echo Config::$clientKey;?>"></script>
+                <script type="text/javascript">
+                    document.getElementById('pay-button').onclick = function(){
+                        // SnapToken acquired from previous step
+                        snap.pay('<?php echo $snap_token?>');
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     };
                 </script>
             </div>

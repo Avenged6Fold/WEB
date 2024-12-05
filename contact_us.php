@@ -320,7 +320,10 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                     <div class="logout-link">
@@ -328,7 +331,10 @@ session_start();
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                 <?php endif; ?>

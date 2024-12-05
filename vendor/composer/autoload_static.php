@@ -7,10 +7,13 @@ namespace Composer\Autoload;
 class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
 {
     public static $prefixLengthsPsr4 = array (
+<<<<<<< HEAD
         'S' => 
         array (
             'Spipu\\Html2Pdf\\' => 15,
         ),
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         'P' => 
         array (
             'PHPMailer\\PHPMailer\\' => 20,
@@ -18,10 +21,13 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixDirsPsr4 = array (
+<<<<<<< HEAD
         'Spipu\\Html2Pdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/spipu/html2pdf/src',
         ),
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
@@ -30,6 +36,7 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+<<<<<<< HEAD
         'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'PDF417' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
         'QRcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
@@ -44,6 +51,8 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
         'TCPDF_IMPORT' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_import.php',
         'TCPDF_PARSER' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_parser.php',
         'TCPDF_STATIC' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_static.php',
+=======
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     );
 
     public static function getInitializer(ClassLoader $loader)

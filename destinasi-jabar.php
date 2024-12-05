@@ -47,6 +47,7 @@ session_start();
         /* Header Styles */
         header {
             background-color: #fff;
+<<<<<<< HEAD
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0; /* Menempel di atas */
@@ -54,6 +55,14 @@ session_start();
             z-index: 1000;
             padding: 0.5rem 1rem;
             transition: all 0.3s ease;
+=======
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			position: fixed;
+			width: 100%;
+			z-index: 1000;
+			transition: all 0.3s ease;
+			top: 0;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         nav {
@@ -69,7 +78,11 @@ session_start();
         .logo {
             font-size: 1.5rem;
 			font-weight: 700;
+<<<<<<< HEAD
             color: var(--primary-color);
+=======
+			color: #3498db;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         .nav-links {
@@ -168,11 +181,20 @@ session_start();
         }
 
         .destination-card {
+<<<<<<< HEAD
             background-color: #009ee5;
+=======
+            background-color: #fff;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+<<<<<<< HEAD
+=======
+            margin-bottom: 2rem;
+            text-align: center;
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         .destination-card:hover {
@@ -181,6 +203,7 @@ session_start();
 
         .destination-card img {
             width: 100%;
+<<<<<<< HEAD
             height: 200px;
             object-fit: cover;
         }
@@ -196,6 +219,58 @@ session_start();
 
         .destination-info p {
             margin-bottom: 1rem;
+=======
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .destination-info {
+            padding: 1rem;
+        }
+
+        .destination-info h5 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .destination-info p {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-detail:hover {
+            background-color: #2980b9;
+        }
+
+        .card img {
+            width: 100%; /* Pastikan gambar menyesuaikan lebar container */
+            height: 500px; /* Atur tinggi tetap */
+            object-fit: cover; /* Memotong gambar jika rasio berbeda */
+            border-bottom: 1px solid #ddd;
+            border-radius: 10px 10px 0 0; /* Membuat sudut atas melengkung */
+        }
+
+        .card-body {
+            color: #000; /* Warna teks hitam untuk seluruh teks di dalam card */
+            text-align: left; /* Rata kiri untuk teks */
+        }
+
+        /* Button Text */
+        .btn {
+            color: #fff !important; /* Warna teks tombol tetap putih */
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         /* Footer Styles */
@@ -302,20 +377,31 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
+=======
+                    <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
+                    <li><a href="#">Contact</a></li>
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <div class="logout-link">
                         <li><a href="logout.php">Logout</a></li>
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
+<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                     <li><a href="logout.php">Logout</a></li>
 
                     <?php endif; ?>
+=======
+                    <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
+                    <li><a href="#">Contact</a></li>
+                <?php endif; ?>
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             </ul>
 
 
@@ -325,10 +411,25 @@ session_start();
 	<div class="container">
 		<div class="row mb-4 pt-4">
 			<div class="col-12">
+<<<<<<< HEAD
 			<h1 class="text-center" style="color: #000000;">Destinasi</h1>
             <div class="search-container text-center mt-4">
                 <input type="text" id="searchInput" class="form-control w-50 mx-auto" placeholder="Cari destinasi wisata...">
             </div>
+=======
+			<h1 class="text-center" style="color: #000000;">Pencarian Destinasi</h1>
+            <div class="container">
+    <div class="search-bar">
+        <input type="text" id="search-input" class="form-control" placeholder="Cari wisata...">
+        <button id="search-button" class="btn btn-primary mt-2">Cari</button>
+    </div>
+
+    <div id="result-container" class="mt-4">
+        <!-- Hasil pencarian akan dimuat di sini -->
+    </div>
+</div>
+
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 			</div>
 		</div>
 	</div>
@@ -336,9 +437,17 @@ session_start();
 
 	<!-- Content -->
 	<div class="container space">
+<<<<<<< HEAD
 		<div class="row" id="location">
 		</div>
 	</div>
+=======
+    <div class="row" id="location">
+        <!-- Hasil pencarian destinasi akan ditampilkan di sini -->
+    </div>
+</div>
+
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 
 	<!-- Section Footer -->
 	<div class="footer text-white">
@@ -397,9 +506,15 @@ session_start();
 	</div>
 
 	<script>
+<<<<<<< HEAD
 		$(document).ready(function(){
 			destinasiJabar();
 		})
+=======
+		// $(document).ready(function(){
+		// 	destinasiJabar();
+		// })
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 		// Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -416,6 +531,7 @@ session_start();
             header.classList.toggle('sticky', window.scrollY > 0);
         });
 
+<<<<<<< HEAD
         // Fetch and display COVID-19 data
         async function fetchCovidData() {
             try {
@@ -432,6 +548,52 @@ session_start();
 
         // Call fetchCovidData function when the page loads
         window.addEventListener('load', fetchCovidData);
+=======
+        $(document).ready(function () {
+    $('#search-button').on('click', function () {
+        const search = $('#search-input').val();
+
+        $.ajax({
+            url: 'fetch_wisata.php',
+            method: 'GET',
+            data: { search: search },
+            dataType: 'json',
+            success: function (data) {
+    let content = '';
+
+    if (data.length > 0) {
+        data.forEach(function (item) {
+            content += `
+                <div class="card mb-3">
+                    <img src="uploads/${item.gambar}" class="card-img-top" alt="${item.nama_wisata}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.nama_wisata}</h5>
+                        <p class="card-text"><strong>Alamat:</strong> ${item.alamat_wisata}</p>
+                        <p class="card-text">${item.deskripsi_wisata}</p>
+                        <p class="card-text"><strong>Operasional:</strong> ${item.operasional}</p>
+                        <p class="card-text"><strong>Harga Tiket:</strong> Rp${item.harga_tiket}</p>
+                        <a href="#" class="btn btn-primary">Baca lebih lanjut</a>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        content = '<p>Data tidak ditemukan.</p>';
+    }
+
+    $('#result-container').html(content);
+},
+
+
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+
+
+>>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     </script>
 
     <script>
