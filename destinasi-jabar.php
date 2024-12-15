@@ -14,6 +14,9 @@ session_start();
 	<script src="js/script.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -47,22 +50,12 @@ session_start();
         /* Header Styles */
         header {
             background-color: #fff;
-<<<<<<< HEAD
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0; /* Menempel di atas */
-            width: 100%; /* Penuh sepanjang lebar layar */
-            z-index: 1000;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-=======
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 			position: fixed;
 			width: 100%;
 			z-index: 1000;
 			transition: all 0.3s ease;
 			top: 0;
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         nav {
@@ -78,11 +71,7 @@ session_start();
         .logo {
             font-size: 1.5rem;
 			font-weight: 700;
-<<<<<<< HEAD
-            color: var(--primary-color);
-=======
-			color: #3498db;
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
+			color: #08959A;
         }
 
         .nav-links {
@@ -104,7 +93,7 @@ session_start();
 		}
 
 		.nav-links a:hover {
-			color: #3498db;
+			color: #08959A;
 		}
 
         /* Hero Section Styles */
@@ -165,7 +154,7 @@ session_start();
         }
 
         .btn:hover {
-            background-color: #2980b9;
+            background-color: #08959A;
         }
 
         /* Popular Destinations Styles */
@@ -181,20 +170,13 @@ session_start();
         }
 
         .destination-card {
-<<<<<<< HEAD
-            background-color: #009ee5;
-=======
             background-color: #fff;
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-<<<<<<< HEAD
-=======
             margin-bottom: 2rem;
             text-align: center;
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         .destination-card:hover {
@@ -203,23 +185,6 @@ session_start();
 
         .destination-card img {
             width: 100%;
-<<<<<<< HEAD
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .destination-info {
-            padding: 1.5rem;
-        }
-
-        .destination-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .destination-info p {
-            margin-bottom: 1rem;
-=======
             height: 150px;
             object-fit: cover;
             border-bottom: 1px solid #ddd;
@@ -251,7 +216,7 @@ session_start();
         }
 
         .btn-detail:hover {
-            background-color: #2980b9;
+            background-color: #08959A;
         }
 
         .card img {
@@ -270,7 +235,6 @@ session_start();
         /* Button Text */
         .btn {
             color: #fff !important; /* Warna teks tombol tetap putih */
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         }
 
         /* Footer Styles */
@@ -317,9 +281,28 @@ session_start();
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .fa-facebook {
+            color: #1877F2;
+        }
+
+        .fa-youtube {
+            color: #FF0000;
+        }
+
+        .fa-instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .search-container {
         margin-bottom: 2rem;
     }
+
+        .swal2-confirm {
+                margin-right: 10px; /* Menambahkan jarak antara tombol "Login" dan "Batal" */
+            }
 
     #searchInput {
         padding: 10px;
@@ -377,31 +360,17 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
-<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
-=======
-                    <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
-                    <li><a href="#">Contact</a></li>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <div class="logout-link">
                         <li><a href="logout.php">Logout</a></li>
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
-<<<<<<< HEAD
-                    <li><a href="tiket.php">Riwayat Tiket</a></li>
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
-                    <li><a href="logout.php">Logout</a></li>
-
-                    <?php endif; ?>
-=======
-                    <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
-                    <li><a href="#">Contact</a></li>
                 <?php endif; ?>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             </ul>
 
 
@@ -411,12 +380,6 @@ session_start();
 	<div class="container">
 		<div class="row mb-4 pt-4">
 			<div class="col-12">
-<<<<<<< HEAD
-			<h1 class="text-center" style="color: #000000;">Destinasi</h1>
-            <div class="search-container text-center mt-4">
-                <input type="text" id="searchInput" class="form-control w-50 mx-auto" placeholder="Cari destinasi wisata...">
-            </div>
-=======
 			<h1 class="text-center" style="color: #000000;">Pencarian Destinasi</h1>
             <div class="container">
     <div class="search-bar">
@@ -429,7 +392,6 @@ session_start();
     </div>
 </div>
 
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 			</div>
 		</div>
 	</div>
@@ -437,84 +399,48 @@ session_start();
 
 	<!-- Content -->
 	<div class="container space">
-<<<<<<< HEAD
-		<div class="row" id="location">
-		</div>
-	</div>
-=======
     <div class="row" id="location">
         <!-- Hasil pencarian destinasi akan ditampilkan di sini -->
     </div>
 </div>
 
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 
 	<!-- Section Footer -->
-	<div class="footer text-white">
-		<div class="container">
-			<div class="row justify-content-between">
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<h2>Liburin Aja</h2>
-					<p class="p-footer">Platform wisata dan komunitas dengan beragam tips liburan, dan kuliner sepulau jawa. Jangan lupa Subscribe & Like agar kamu terupdate. Jangan Lupa Liburan!</p>
-					<div class="container">
-						<div class="row pt-4">
-							<div class="col-12">
-								<p class="content display-5">Share :</p>
-							</div>
-							<div class="col-12 social">
-								<a href="#"><i class="fab fa-facebook"></i></a>
-								<a href="#"><i class="fab fa-twitter"></i></a>
-								<a href="#"><i class="fab fa-whatsapp"></i></a>
-								<a href="#"><i class="fab fa-instagram"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 15px;">
-							<h2>Menu</h2>
-							<ul>
-								<li class="footer-item">
-					                <a class="footer-link text-white" href="#">Tips</a>
-					            </li>
-					            <li class="footer-item">
-					                <a class="footer-link text-white" href="#">Kuliner</a>
-					            </li> 
-					            <li class="footer-item">
-					                <a class="footer-link text-white" href="#">Contact Us</a>
-					            </li>
-							</ul>
-						</div>
-						<div class="col-lg6 col-md-6 col-sm-12">
-							<h2>Let's Connect</h2>
-							<ul>
-								<li class="footer-socmed">
-					                <a class="footer-link text-white" href="#"><ion-icon name="logo-facebook"></ion-icon> Instagram</a>
-					            </li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-12">
-					<p class="text-center">
-						© 2020 <a href="" class="copyright text-white">liburinaja.com</a> - All Rights Reserved | <a href="" class="copyright text-white">Privacy Policy</a><a href="" class="copyright text-white">Contact</a> | <a href="" class="copyright text-white">Renew/Change Cookie Consent</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang Kami</h3>
+                    <p>Platform pemesanan tiket wisata di daerah jember yang memudahkan anda yang ingin berwisata tanpa ribet. Jangan Lupa Liburan!</p>
+                </div>
+                <div class="footer-section">
+                    <!-- <h3>Menu</h3>
+                    <ul>
+                        <li><a href="#">Tips</a></li>
+                        <li><a href="#">Daftar Wisata</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul> -->
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                        <a href="https://www.instagram.com/jember_liburan"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jember Liburan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 	<script>
-<<<<<<< HEAD
-		$(document).ready(function(){
-			destinasiJabar();
-		})
-=======
 		// $(document).ready(function(){
 		// 	destinasiJabar();
 		// })
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 		// Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -531,24 +457,6 @@ session_start();
             header.classList.toggle('sticky', window.scrollY > 0);
         });
 
-<<<<<<< HEAD
-        // Fetch and display COVID-19 data
-        async function fetchCovidData() {
-            try {
-                const response = await fetch('https://api.kawalcorona.com/indonesia/');
-                const data = await response.json();
-                document.getElementById('positif').textContent = data[0].positif;
-                document.getElementById('sembuh').textContent = data[0].sembuh;
-                document.getElementById('meninggal').textContent = data[0].meninggal;
-                document.getElementById('dirawat').textContent = data[0].dirawat;
-            } catch (error) {
-                console.error('Error fetching COVID-19 data:', error);
-            }
-        }
-
-        // Call fetchCovidData function when the page loads
-        window.addEventListener('load', fetchCovidData);
-=======
         $(document).ready(function () {
     $('#search-button').on('click', function () {
         const search = $('#search-input').val();
@@ -593,20 +501,37 @@ session_start();
 });
 
 
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     </script>
 
-    <script>
-        function checkLogin() {
-            // Cek apakah pengguna sudah login
-            var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
+<script>
+       function checkLogin() {
+    // Cek apakah pengguna sudah login
+    var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
 
-            if (loggedIn === 'false') {
-                alert("Anda harus login terlebih dahulu untuk memesan tiket!");
+    if (loggedIn === 'false') {
+        // Menampilkan SweetAlert2 dengan tombol Cancel dan Konfirmasi
+        Swal.fire({
+            title: 'Anda belum login!',
+            text: 'Anda harus login terlebih dahulu untuk memesan tiket!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Login',
+            cancelButtonText: 'Batal',
+            customClass: {
+                confirmButton: 'swal2-confirm btn btn-primary',
+                cancelButton: 'swal2-cancel btn btn-secondary'
+            },
+            buttonsStyling: false
+        }).then((result) => {
+            if (result.isConfirmed) {
                 // Redirect ke halaman login dengan parameter redirect
                 window.location.href = "login.php?redirect=index.php";
-            } 
-        } 
-	</script>
+            }
+        });
+    }
+}
+
+
+    </script>
 </body>
 </html>

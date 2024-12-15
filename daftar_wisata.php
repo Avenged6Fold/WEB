@@ -57,16 +57,6 @@ include 'db.php';
                   <input type="file" class="form-control" name="gambar" id="gambar" accept="image/*" required>
                 </div>
               </div>
-<<<<<<< HEAD
-=======
-              <div class="form-group">
-                  <label for="populer">Populer</label>
-                  <select class="form-control" name="populer" id="populer" required>
-                    <option value="1">Populer</option>
-                    <option value="0">Tidak Populer</option>
-                  </select>
-                </div>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
               <div class="modal-footer">
                 <input type="submit" value="Daftar" name="daftar" class="btn btn-success"/>
               </div>
@@ -115,16 +105,6 @@ include 'db.php';
                   <img id="current_image" src="" alt="Current Image" style="width: 100px; display: none;">
                 </div>
               </div>
-<<<<<<< HEAD
-=======
-              <div class="form-group">
-                  <label for="edit_populer">Populer</label>
-                  <select class="form-control" name="populer" id="edit_populer" required>
-                    <option value="1">Populer</option>
-                    <option value="0">Tidak Populer</option>
-                  </select>
-                </div>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
               <div class="modal-footer">
                 <input type="button" value="Update" class="btn btn-success" onclick="update_wisata()" />
               </div>
@@ -144,16 +124,11 @@ include 'db.php';
                 <th>Jam Operasional</th>
                 <th>Harga Tiket</th>
                 <th>Gambar</th>
-<<<<<<< HEAD
-=======
-                <th>Populer</th>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
             <?php
-<<<<<<< HEAD
                 // Fetch data using PDO
                 $query = "SELECT * FROM wisata";
                 $stmt = $pdo->prepare($query);
@@ -183,38 +158,6 @@ include 'db.php';
                   echo "</tr>";
                 }
               ?>
-=======
-            // Fetch data using PDO
-            $query = "SELECT * FROM wisata ORDER BY id DESC"; // Mengurutkan berdasarkan id secara descending
-            $stmt = $pdo->prepare($query);
-            $stmt->execute();
-            $wisataData = $stmt->fetchAll();
-            $no = 1;
-
-            foreach ($wisataData as $wisata) {
-              echo "<tr>";
-              echo "<td>" . $no++ . "</td>";
-              echo "<td>" . $wisata['nama_wisata'] . "</td>";
-              echo "<td>" . $wisata['alamat_wisata'] . "</td>";
-              echo "<td>" . $wisata['deskripsi_wisata'] . "</td>";
-              echo "<td>" . $wisata['operasional'] . "</td>";
-              echo "<td>" . $wisata['harga_tiket'] . "</td>";
-
-              // Display the image, if available
-              if ($wisata['gambar']) {
-                echo "<td><img src='uploads/" . $wisata['gambar'] . "' alt='Gambar Wisata' style='width: 100px;'></td>";
-              } else {
-                echo "<td>No Image</td>";
-              }
-              echo "<td>" . ($wisata['populer'] ? 'Ya' : 'Tidak') . "</td>";
-              echo "<td>
-                      <a href='#' class='btn btn-info edit' onclick='edit_wisata(" . $wisata['id'] . ")'><i class='fa fa-edit'></i></a> |
-                      <a href='proses2.php?aksi=delete_wisata&id=" . $wisata['id'] . "' class='btn btn-danger' onclick='return confirm(\"Yakin hapus data ini?\")'><i class='fa fa-trash'></i></a>
-                    </td>";
-              echo "</tr>";
-            }
-            ?>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             </tbody>
           </table>
         </div>
@@ -223,11 +166,7 @@ include 'db.php';
 </div>
 
 <script type="text/javascript">
-<<<<<<< HEAD
   function edit_wisata(id) {
-=======
- function edit_wisata(id) {
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     $.ajax({
       url: 'proses2.php?aksi=edit_data_wisata&id=' + id,
       dataType: 'JSON',
@@ -239,10 +178,6 @@ include 'db.php';
         $("#edit_deskripsi_wisata").val(result.deskripsi_wisata);
         $("#edit_operasional").val(result.operasional);
         $("#edit_harga_tiket").val(result.harga_tiket);
-<<<<<<< HEAD
-=======
-        $("#edit_populer").val(result.populer); // Set nilai dropdown
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         if (result.gambar) {
           $("#current_image").attr("src", "uploads/" + result.gambar).show();
         }
@@ -253,10 +188,6 @@ include 'db.php';
     });
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 function update_wisata() {
     // Menggunakan FormData untuk mendukung pengiriman file
     var formData = new FormData($("#form_edit")[0]);
@@ -284,8 +215,4 @@ function update_wisata() {
 
 <?php
 include 'footer.php';
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d

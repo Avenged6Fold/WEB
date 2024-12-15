@@ -1,21 +1,41 @@
 <?php
 session_start();
-<<<<<<< HEAD
-=======
 include('db.php'); // Menyertakan file koneksi database
+
 // Ambil data wisata populer menggunakan PDO
-$query = "SELECT * FROM wisata WHERE populer = 1"; // Query untuk mengambil data yang populer
-$stmt = $pdo->prepare($query); // Menyiapkan query
-$stmt->execute(); // Menjalankan query
-$destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil sebagai array asosiatif
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
+$queryWisata = "SELECT * FROM wisata WHERE populer = 1";
+$stmtWisata = $pdo->prepare($queryWisata);
+$stmtWisata->execute();
+$destinasiWisata = $stmtWisata->fetchAll(PDO::FETCH_ASSOC);
+
+// Ambil total jumlah pengguna
+$queryUsers = "SELECT COUNT(*) AS total_users FROM users";
+$stmtUsers = $pdo->prepare($queryUsers);
+$stmtUsers->execute();
+$totalUsers = $stmtUsers->fetch(PDO::FETCH_ASSOC)['total_users'];
+
+// Ambil total jumlah pemesanan
+$queryPemesanan = "SELECT COUNT(*) AS total_pemesanan FROM pemesanan";
+$stmtPemesanan = $pdo->prepare($queryPemesanan);
+$stmtPemesanan->execute();
+$totalPemesanan = $stmtPemesanan->fetch(PDO::FETCH_ASSOC)['total_pemesanan'];
+
+// Ambil total jumlah wisata
+$queryTotalWisata = "SELECT COUNT(*) AS total_wisata FROM wisata";
+$stmtTotalWisata = $pdo->prepare($queryTotalWisata);
+$stmtTotalWisata->execute();
+$totalWisata = $stmtTotalWisata->fetch(PDO::FETCH_ASSOC)['total_wisata'];
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liburin Aja - Modern</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -68,7 +88,7 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #08959A;
         }
 
         .nav-links {
@@ -88,7 +108,7 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
+            color: #08959A;
         }
 
         /* Hero Section Styles */
@@ -149,7 +169,7 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
         }
 
         .btn:hover {
-            background-color: #2980b9;
+            background-color: #08959A;
         }
 
         /* Covid Data Section Styles */
@@ -177,7 +197,7 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
 
         .covid-card {
             flex-basis: calc(25% - 1rem);
-            background-color: #009ee5;
+            background-color: #08959A;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
@@ -237,7 +257,7 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
         .destination-info h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
-            color: #009ee5;
+            color: #08959A;
         }
 
         .destination-info p {
@@ -279,6 +299,19 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
             transition: color 0.3s ease;
         }
 
+        .fa-facebook {
+            color: #1877F2;
+        }
+
+        .fa-youtube {
+            color: #FF0000;
+        }
+
+        .fa-instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         .social-icons a:hover {
             color: var(--primary-color);
         }
@@ -336,10 +369,7 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
-<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                     <div class="logout-link">
@@ -347,10 +377,6 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
-<<<<<<< HEAD
-                    <li><a href="tiket.php">Riwayat Tiket</a></li>
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                 <?php endif; ?>
@@ -376,30 +402,31 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
         </section>
 
         <section class="covid-data">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Data Tentang Jeli</h2>
-                </div>
-                <div class="covid-cards">
-                    <div class="covid-card">
-                        <h3>Total Pemesanan</h3>
-                        <p id="positif">0</p>
-                    </div>
-                    <div class="covid-card">
-                        <h3>Total Akun User</h3>
-                        <p id="sembuh">0</p>
-                    </div>
-                    <div class="covid-card">
-                        <h3>Total Tiket Yang Berhasil</h3>
-                        <p id="meninggal">0</p>
-                    </div>
-                    <div class="covid-card">
-                        <h3>Total Tiket Yang Dikembalikan</h3>
-                        <p id="dirawat">0</p>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="section-title">
+            <h2>Data Tentang Jeli</h2>
+        </div>
+        <div class="covid-cards">
+            <div class="covid-card">
+                <h3>Total Pemesanan</h3>
+                <p id="positif"><?php echo htmlspecialchars($totalPemesanan); ?></p>
             </div>
-        </section>
+            <div class="covid-card">
+                <h3>Total Akun User</h3>
+                <p id="sembuh"><?php echo htmlspecialchars($totalUsers); ?></p>
+            </div>
+            <div class="covid-card">
+                <h3>Total Wisata</h3>
+                <p id="meninggal"><?php echo htmlspecialchars($totalWisata); ?></p>
+            </div>
+            <!-- <div class="covid-card">
+                <h3>Total Tiket Yang Dikembalikan</h3>
+                <p id="dirawat">0</p>
+            </div> -->
+        </div>
+    </div>
+</section>
+
 
         <section class="popular-destinations" id="destinasi">
             <div class="container">
@@ -407,24 +434,6 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
                     <h2>Destinasi Populer</h2>
                 </div>
                 <div class="destinations-grid">
-<<<<<<< HEAD
-                    <div class="destination-card">
-                        <img src="img/papuma.jpg" alt="Pantai Papuma">
-                        <div class="destination-info">
-                            <h3>Pantai Papuma - Wuluhan</h3>
-                            <p>Pantai Papuma adalah sebuah pantai yang menjadi tempat wisata di Kabupaten Jember, Provinsi Jawa Timur, Indonesia.</p>
-                            <a href="#" class="btn">Baca lebih lanjut</a>
-                        </div>
-                    </div>
-                    <div class="destination-card">
-                        <img src="img/Wisata-Rembangan.jpg" alt="Wisata Rembangan">
-                        <div class="destination-info">
-                            <h3>Puncak Rembangan - Rembangan</h3>
-                            <p>Wisata Alam Rembangan terletak 12 km arah utara kota Jember. Fasilitas yang dimiliki antara lain kolam Pemandian, Hotel, ruang pertemuan, restoran, arena bermain, agro wisata Kopi Kebun Rayap.</p>
-                            <a href="#" class="btn">Baca lebih lanjut</a>
-                        </div>
-                    </div>
-=======
                     <?php foreach ($destinasiWisata as $row): ?>
                         <div class="destination-card">
                             <img src="uploads/<?php echo htmlspecialchars($row['gambar']); ?>" alt="<?php echo htmlspecialchars($row['nama_wisata']); ?>">
@@ -432,11 +441,10 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
                                 <h3><?php echo htmlspecialchars($row['nama_wisata']); ?></h3>
                                 <p><?php echo htmlspecialchars($row['alamat_wisata']); ?></p>
                                 <p><?php echo htmlspecialchars($row['deskripsi_wisata']); ?></p>
-                                <a href="#" class="btn">Baca lebih lanjut</a>
+                                <a href="destinasi-jabar.php" class="btn">Info lebih lanjut</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                 </div>
             </div>
         </section>
@@ -447,32 +455,35 @@ $destinasiWisata = $stmt->fetchAll(PDO::FETCH_ASSOC); // Mengambil semua hasil s
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Tentang Kami</h3>
-                    <p>Platform wisata dan komunitas dengan beragam tips liburan, dan kuliner sepulau jawa. Jangan lupa Subscribe & Like agar kamu terupdate. Jangan Lupa Liburan!</p>
+                    <p>Platform pemesanan tiket wisata di daerah jember yang memudahkan anda yang ingin berwisata tanpa ribet. Jangan Lupa Liburan!</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Menu</h3>
+                    <!-- <h3>Menu</h3>
                     <ul>
                         <li><a href="#">Tips</a></li>
                         <li><a href="#">Daftar Wisata</a></li>
                         <li><a href="#">Contact Us</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="footer-section">
                     <h3>Ikuti Kami</h3>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/lutdaahm_"><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                        <a href="https://www.instagram.com/jember_liburan"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Liburin Aja. All Rights Reserved.</p>
+                <p>&copy; 2024 Jember Liburan. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

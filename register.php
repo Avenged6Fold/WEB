@@ -1,13 +1,15 @@
 <?php
 include 'db.php';
+require 'vendor/autoload.php'; // PHPMailer autoload
 
-$error_message = ""; // Variabel untuk menyimpan pesan error
+$error_message = ""; // Variabel untuk pesan error
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = 'pembeli';
+    $token = bin2hex(random_bytes(32)); // Generate token unik
 
     // Cek apakah email sudah ada
     $check_stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
@@ -18,19 +20,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $error_message = "Email sudah terdaftar!";
     } else {
-        // Insert dengan kolom username
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $username, $email, $password, $role);
-
+        // Insert ke database dengan status belum diverifikasi
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password, role, is_verified, reset_token) VALUES (?, ?, ?, ?, 0, ?)");
+        $stmt->bind_param("sssss", $username, $email, $password, $role, $token);
+        
         if ($stmt->execute()) {
-            header("Location: login.php");
-            exit;
+            // Kirim email verifikasi
+            $verification_link = "http://localhost/WEB/verify.php?token=$token";
+            $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'fhanwam@gmail.com'; // Ganti dengan email Anda
+                $mail->Password = 'bbqa pnvt fniz phts'; // Ganti dengan password email Anda
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+
+                $mail->setFrom('fhanwam@gmail.com', 'SiJeli');
+                $mail->addAddress($email, $username);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Verifikasi Akun Anda';
+                $mail->Body = "Halo $username,<br><br>Terima kasih telah mendaftar. Klik tautan di bawah ini untuk memverifikasi akun Anda:<br><br>
+                <a href='$verification_link'>$verification_link</a><br><br>Salam,<br>YourAppName";
+
+                $mail->send();
+                header("Location: check-email.php");
+                exit;
+            } catch (Exception $e) {
+                $error_message = "Gagal mengirim email verifikasi: " . $mail->ErrorInfo;
+            }
         } else {
             $error_message = "Gagal register, coba lagi!";
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

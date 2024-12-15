@@ -36,7 +36,6 @@ include 'header.php';
             <?php  
             error_reporting(0);
             $no = 1;
-<<<<<<< HEAD
             $query = mysqli_query($conn, "SELECT * FROM pemesanan ORDER BY id DESC");
             while ($data = mysqli_fetch_array($query)) {
               $transaction = $data['transaction_status'];
@@ -49,29 +48,15 @@ include 'header.php';
               echo "<tr>";
               echo "<td>".$no++."</td>";
               //echo "<td><img src='".$qrFileName."' alt='QR Code'></td>"; // Menampilkan QR code
-=======
-            $query = mysqli_query($conn, "SELECT * FROM pemesanan ORDER BY id ASC");
-            while ($data = mysqli_fetch_array($query)) {
-              $status = $data['status_transaksi'];
-
-              echo "<tr>";
-              echo "<td>".$no++."</td>";
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
               echo "<td>".$data['nama']."</td>";
               echo "<td>".$data['alamat']."</td>";
               echo "<td>".$data['total_bayar']."</td>";
               echo "<td>".$data['order_id']."</td>";
               echo "<td>".$data['email']."</td>";
 
-<<<<<<< HEAD
               if ($transaction >= 3) {
                 echo "<td><b>Pembayaran Sukses</b></td>";
               } elseif ($transaction == 2) {
-=======
-              if ($status >= 3) {
-                echo "<td><b>Pembayaran Sukses</b></td>";
-              } elseif ($status == 2) {
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                 echo "<td><b>Pembayaran Pending</b></td>";
               } else {
                 echo "<td><b>Pembayaran Belum Dilakukan</b></td>";

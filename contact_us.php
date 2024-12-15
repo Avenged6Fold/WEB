@@ -8,6 +8,9 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Liburin Aja</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
   <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -58,7 +61,7 @@ session_start();
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #08959A;
         }
 
         .nav-links {
@@ -78,7 +81,7 @@ session_start();
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
+            color: #08959A;
         }
 
         /* Hero Section Styles */
@@ -139,7 +142,7 @@ session_start();
         }
 
         .btn:hover {
-            background-color: #2980b9;
+            background-color: #08959A;
         }
 
         /* Covid Data Section Styles */
@@ -269,6 +272,20 @@ session_start();
             transition: color 0.3s ease;
         }
 
+        .fa-facebook {
+            color: #1877F2;
+        }
+
+        .fa-youtube {
+            color: #FF0000;
+        }
+
+        .fa-instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .social-icons a:hover {
             color: var(--primary-color);
         }
@@ -279,6 +296,10 @@ session_start();
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .swal2-confirm {
+                margin-right: 10px; /* Menambahkan jarak antara tombol "Login" dan "Batal" */
+            }
 
         /* Animations */
         @keyframes fadeInUp {
@@ -320,10 +341,7 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li><a href="pesan.php">Pesan Tiket</a></li>
-<<<<<<< HEAD
                     <li><a href="tiket.php">Riwayat Tiket</a></li>
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                     <div class="logout-link">
@@ -331,10 +349,6 @@ session_start();
                     </div>
                 <?php else: ?>
                     <li><a href="#" onclick="checkLogin()">Pesan Tiket</a></li>
-<<<<<<< HEAD
-                    <li><a href="tiket.php">Riwayat Tiket</a></li>
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="contact_us.php">Contact</a></li>
                 <?php endif; ?>
@@ -350,7 +364,7 @@ session_start();
       <h2 class="header-title">Contact Us</h2>
     </div>
     <p class="header-text">
-      Selamat datang di Liburan Aja, web mengenai informasi wisata Jawa.
+      Selamat datang di SiJeli, web mengenai informasi wisata Jember.
       Jika Anda memiliki pertanyaan, kerjasama dan review. Hubungi kami
       melalui Contact Form dibawah:
     </p>
@@ -401,60 +415,36 @@ session_start();
 
 
 	<!-- Section Footer -->
-	<div class="footer text-white">
-		<div class="container">
-			<div class="row justify-content-between">
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<h2>Liburin Aja</h2>
-					<p class="p-footer">Platform wisata dan komunitas dengan beragam tips liburan, dan kuliner sepulau jawa. Jangan lupa Subscribe & Like agar kamu terupdate. Jangan Lupa Liburan!</p>
-					<div class="container">
-						<div class="row pt-4">
-							<div class="col-12">
-								<p class="content display-5">Share :</p>
-							</div>
-							<div class="col-12 social">
-								<a href="#"><i class="fab fa-facebook"></i></a>
-								<a href="#"><i class="fab fa-twitter"></i></a>
-								<a href="#"><i class="fab fa-whatsapp"></i></a>
-								<a href="#"><i class="fab fa-instagram"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 15px;">
-							<h2>Menu</h2>
-							<ul>
-								<li class="footer-item">
-					                <a class="footer-link text-white" href="#">Tips</a>
-					            </li>
-					            <li class="footer-item">
-					                <a class="footer-link text-white" href="#">Kuliner</a>
-					            </li> 
-					            <li class="footer-item">
-					                <a class="footer-link text-white" href="#">Contact Us</a>
-					            </li>
-							</ul>
-						</div>
-						<div class="col-lg6 col-md-6 col-sm-12">
-							<h2>Let's Connect</h2>
-							<ul>
-								<li class="footer-socmed">
-					                <a class="footer-link text-white" href="#"><ion-icon name="logo-facebook"></ion-icon> Instagram</a>
-					            </li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-12">
-					<p class="text-center">
-						© 2020 <a href="" class="copyright text-white">liburinaja.com</a> - All Rights Reserved | <a href="" class="copyright text-white">Privacy Policy</a><a href="" class="copyright text-white">Contact</a> | <a href="" class="copyright text-white">Renew/Change Cookie Consent</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang Kami</h3>
+                    <p>Platform pemesanan tiket wisata di daerah jember yang memudahkan anda yang ingin berwisata tanpa ribet. Jangan Lupa Liburan!</p>
+                </div>
+                <div class="footer-section">
+                    <!-- <h3>Menu</h3>
+                    <ul>
+                        <li><a href="#">Tips</a></li>
+                        <li><a href="#">Daftar Wisata</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul> -->
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                        <a href="https://www.instagram.com/jember_liburan"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jember Liburan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -494,17 +484,35 @@ session_start();
         window.addEventListener('load', fetchCovidData);
     </script>
 
-    <script>
-        function checkLogin() {
-            // Cek apakah pengguna sudah login
-            var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
+<script>
+       function checkLogin() {
+    // Cek apakah pengguna sudah login
+    var loggedIn = "<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ? 'true' : 'false'; ?>";
 
-            if (loggedIn === 'false') {
-                alert("Anda harus login terlebih dahulu untuk memesan tiket!");
+    if (loggedIn === 'false') {
+        // Menampilkan SweetAlert2 dengan tombol Cancel dan Konfirmasi
+        Swal.fire({
+            title: 'Anda belum login!',
+            text: 'Anda harus login terlebih dahulu untuk memesan tiket!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Login',
+            cancelButtonText: 'Batal',
+            customClass: {
+                confirmButton: 'swal2-confirm btn btn-primary',
+                cancelButton: 'swal2-cancel btn btn-secondary'
+            },
+            buttonsStyling: false
+        }).then((result) => {
+            if (result.isConfirmed) {
                 // Redirect ke halaman login dengan parameter redirect
                 window.location.href = "login.php?redirect=index.php";
-            } 
-        } 
+            }
+        });
+    }
+}
+
+
     </script>
 </body>
 </html>

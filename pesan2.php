@@ -2,11 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {
-<<<<<<< HEAD
     header("Location: login.php?redirect=pesan2.php");
-=======
-    header("Location: login.php?redirect=pesan.php");
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     exit();
 }
 require_once 'db.php';
@@ -21,22 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $jumlah_tiket = $_POST['jumlah_tiket'];
     $tanggal_kunjungan = $_POST['tanggal_kunjungan'];
     $total_bayar = $_POST['total_bayar'];
-<<<<<<< HEAD
     $order_id = 'order-' . time() . '-' . rand(1000, 9999);
     $status_transaksi = 1;
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     
     try {
         // Query untuk menyimpan data
         $stmt = $pdo->prepare("INSERT INTO pemesanan 
-<<<<<<< HEAD
             (nama, email, telepon, alamat, destinasi, jumlah_tiket, tanggal_kunjungan, total_bayar, order_id, status_transaksi)
             VALUES (:nama, :email, :telepon, :alamat, :destinasi, :jumlah_tiket, :tanggal_kunjungan, :total_bayar, :order_id, :status_transaksi)");
-=======
-            (nama, email, telepon, alamat, destinasi, jumlah_tiket, tanggal_kunjungan, total_bayar)
-            VALUES (:nama, :email, :telepon, :alamat, :destinasi, :jumlah_tiket, :tanggal_kunjungan, :total_bayar)");
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
 
         // Bind parameter
         $stmt->bindParam(':nama', $nama);
@@ -47,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':jumlah_tiket', $jumlah_tiket);
         $stmt->bindParam(':tanggal_kunjungan', $tanggal_kunjungan);
         $stmt->bindParam(':total_bayar', $total_bayar);
-<<<<<<< HEAD
         $stmt->bindParam(':order_id', $order_id);
         $stmt->bindParam(':status_transaksi', $status_transaksi);
 
@@ -59,13 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 window.location.href = './midtrans/examples/snap/checkout-process-simple-version.php?order_id=$order_id';
             </script>";
         exit();
-=======
-
-        // Eksekusi statement
-        $stmt->execute();
-
-        echo "<script>alert('Pemesanan berhasil disimpan!');</script>";
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -275,11 +255,7 @@ button:hover {
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
-<<<<<<< HEAD
                     <li><a href="pesan2.php">Pesan Tiket</a></li>
-=======
-                    <li><a href="pesan.php">Pesan Tiket</a></li>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                     <li><a href="destinasi-jabar.php">Daftar Wisata</a></li>
                     <li><a href="#">Contact</a></li>
                     <div class="logout-link">
@@ -423,21 +399,13 @@ button:hover {
     }
 </script>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         <!-- Step 3: Ringkasan -->
         <div class="step" id="step3">
             <h2>Langkah 3: Ringkasan Pemesanan</h2>
             <div class="summary" id="ringkasan">
             </div>
             <button onclick="prevStep()">Kembali</button>
-<<<<<<< HEAD
             <form action="pesan2.php" method="POST">
-=======
-            <form action="pesan.php" method="POST">
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
                 <input type="hidden" name="nama" id="form-nama">
                 <input type="hidden" name="email" id="form-email">
                 <input type="hidden" name="telepon" id="form-telepon">
@@ -469,14 +437,9 @@ button:hover {
                 <input type="hidden" name="total_bayar" id="form-total_bayar">
                 <br>
                 
-<<<<<<< HEAD
                 <button type="submit" onclick="prepareFormData()">Konfirmasi Pemesanan
                 <a href='./midtrans/examples/snap/checkout-process-simple-version.php?order_id=$order_id'></a>
                 </button>
-=======
-                <button type="submit" onclick="prepareFormData()">Konfirmasi Pembayaran</button>
-            </form>
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         </div>
         
 
@@ -512,13 +475,8 @@ button:hover {
 
         function prevStep() {
     if (currentStep === 1) {
-<<<<<<< HEAD
         // Redirect to pesan2.php if on the first step
         window.location.href = 'pesan2.php';
-=======
-        // Redirect to pesan.php if on the first step
-        window.location.href = 'pesan.php';
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
     } else {
         // Go to the previous step
         document.getElementById(`step${currentStep}`).classList.remove('active');
@@ -569,11 +527,8 @@ button:hover {
             };
         }
         function showSummary() {
-<<<<<<< HEAD
         const nama = document.getElementById('nama').value;
         const email = document.getElementById('email').value;
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
         const wisata = document.getElementById("pilih-wisata").options[document.getElementById("pilih-wisata").selectedIndex].text;
         const jumlahTiket = document.getElementById("jumlah-tiket").value;
         const tanggalKunjungan = document.getElementById("tanggal-kunjungan").value;
@@ -603,13 +558,10 @@ button:hover {
 
         // Tampilkan ringkasan
         document.getElementById("ringkasan").innerHTML = `
-<<<<<<< HEAD
             <h3>Data Pemesan:</h3>
                 <p>Nama: ${nama}</p>
                 <p>Email: ${email}</p>
             <h3>Detail Pemesanan:</h3>
-=======
->>>>>>> a6d1d7fb59b49c614209c67b9cee60e1e520f41d
             <p><strong>Destinasi:</strong> ${wisata}</p>
             <p><strong>Jumlah Tiket:</strong> ${jumlahTiket}</p>
             <p><strong>Tanggal Kunjungan:</strong> ${tanggalKunjungan}</p>
