@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include 'db1.php';
 
 $error_message = ""; // Variabel untuk menyimpan pesan error
 
@@ -8,27 +8,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['user'] = $user['email'];
-        $_SESSION['role'] = $user['role'];
-
-        // Redirect berdasarkan peran
-        if ($user['role'] == 'admin') {
-            header("Location: dashboard2.php");
-        } else {
-            $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
-            header("Location: $redirect");
-        }
-        exit();
+    // Cek apakah email dan password ada
+    if (empty($email) || empty($password)) {
+        $error_message = "Email atau password tidak boleh kosong!";
     } else {
-        $error_message = "Email atau password salah!";
+        // Menggunakan prepared statement untuk keamanan
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+
+            if (password_verify($password, $user['password'])) {
+                // Login berhasil
+                $_SESSION['loggedin'] = true;
+                $_SESSION['user'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
+
+                // Redirect berdasarkan peran
+                if ($user['role'] == 'admin') {
+                    header("Location: dashboard2.php");
+                } else {
+                    $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
+                    header("Location: $redirect");
+                }
+                exit();
+            } else {
+                $error_message = "Password salah!";
+            }
+        } else {
+            $error_message = "Email tidak ditemukan!";
+        }
     }
 }
 
@@ -49,7 +61,8 @@ if (isset($_SESSION['notification'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to bottom right, #4db6ac, #e0f2f1); /* Gradien hijau teal dominan dan putih lembut */
+            background: linear-gradient(to bottom right, #4db6ac, #e0f2f1);
+            /* Gradien hijau teal dominan dan putih lembut */
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -58,7 +71,8 @@ if (isset($_SESSION['notification'])) {
         }
 
         .login-card {
-            background-color: #e0f2f1; /* Hijau teal sangat terang untuk container */
+            background-color: #e0f2f1;
+            /* Hijau teal sangat terang untuk container */
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -80,12 +94,14 @@ if (isset($_SESSION['notification'])) {
         }
 
         .form-control:focus {
-            box-shadow: 0 0 15px rgba(77, 182, 172, 0.8); /* Fokus warna hijau teal */
+            box-shadow: 0 0 15px rgba(77, 182, 172, 0.8);
+            /* Fokus warna hijau teal */
             outline: none;
         }
 
         .btn-login {
-            background: linear-gradient(to right, #4db6ac, #b2dfdb); /* Gradien hijau teal dominan dan putih lembut */
+            background: linear-gradient(to right, #4db6ac, #b2dfdb);
+            /* Gradien hijau teal dominan dan putih lembut */
             border: none;
             color: #004d40;
             padding: 0.75rem;
@@ -106,15 +122,20 @@ if (isset($_SESSION['notification'])) {
             margin-top: 1rem;
         }
 
-        .register-link, .back-link, .forgot-link {
-            color: #00796b; /* Hijau teal untuk teks tautan */
+        .register-link,
+        .back-link,
+        .forgot-link {
+            color: #00796b;
+            /* Hijau teal untuk teks tautan */
             text-decoration: none;
             font-size: 1rem;
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
-        .register-link:hover, .back-link:hover, .forgot-link:hover {
+        .register-link:hover,
+        .back-link:hover,
+        .forgot-link:hover {
             color: #004d40;
             text-decoration: underline;
         }
@@ -126,7 +147,8 @@ if (isset($_SESSION['notification'])) {
 
         /* Modal style adjustments for teal and white theme */
         .modal-content {
-            background-color: #b2dfdb; /* Warna dominan hijau teal */
+            background-color: #b2dfdb;
+            /* Warna dominan hijau teal */
             color: #004d40;
         }
 
@@ -145,7 +167,8 @@ if (isset($_SESSION['notification'])) {
         }
 
         .btn-primary:hover {
-            background-color: #80cbc4; /* Warna hijau teal lebih terang untuk hover */
+            background-color: #80cbc4;
+            /* Warna hijau teal lebih terang untuk hover */
         }
     </style>
 </head>
@@ -154,7 +177,7 @@ if (isset($_SESSION['notification'])) {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                  <!-- Notifikasi Alert -->
+                <!-- Notifikasi Alert -->
                 <?php if (!empty($notification_message)): ?>
                     <div class="alert alert-info mt-4" role="alert">
                         <?php echo $notification_message; ?>
@@ -184,7 +207,7 @@ if (isset($_SESSION['notification'])) {
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Modal for Error Notification -->
                 <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -228,14 +251,14 @@ if (isset($_SESSION['notification'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
-    // Tampilkan modal error jika ada pesan error
-    <?php if (!empty($error_message)) : ?>
-        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {});
-        errorModal.show();
-    <?php endif; ?>
-</script>
+        // Tampilkan modal error jika ada pesan error
+        <?php if (!empty($error_message)) : ?>
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {});
+            errorModal.show();
+        <?php endif; ?>
+    </script>
 
 </body>
 
